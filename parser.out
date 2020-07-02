@@ -1,0 +1,2762 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> lista
+Rule 1     lista -> <empty>
+Rule 2     lista -> lista ;
+Rule 3     lista -> lista sentencia
+Rule 4     lista -> lista error ;
+Rule 5     asignacion -> VARIABLE = expresion
+Rule 6     asignacion -> INDEFINIDA = expresion
+Rule 7     sentencia -> asignacion ;
+Rule 8     sentencia -> { listasentencias }
+Rule 9     sentencia -> PRINT ( expresion ) ;
+Rule 10    sentencia -> while condicion sentencia termino
+Rule 11    sentencia -> if condicion sentencia termino
+Rule 12    sentencia -> if condicion sentencia termino ELSE sentencia termino
+Rule 13    sentencia -> for asignacion condicion sentencia termino
+Rule 14    condicion -> ( expresion )
+Rule 15    while -> WHILE
+Rule 16    if -> IF
+Rule 17    for -> FOR
+Rule 18    listasentencias -> <empty>
+Rule 19    listasentencias -> listasentencias
+Rule 20    listasentencias -> listasentencias sentencia
+Rule 21    expresion -> NUMERO
+Rule 22    expresion -> CONSTANTE
+Rule 23    expresion -> VARIABLE
+Rule 24    expresion -> asignacion
+Rule 25    expresion -> ! expresion
+Rule 26    expresion -> - expresion
+Rule 27    expresion -> FUNCION ( expresion )
+Rule 28    expresion -> expresion + expresion
+Rule 29    expresion -> expresion - expresion
+Rule 30    expresion -> expresion * expresion
+Rule 31    expresion -> expresion / expresion
+Rule 32    expresion -> expresion % expresion
+Rule 33    expresion -> expresion ^ expresion
+Rule 34    expresion -> expresion > expresion
+Rule 35    expresion -> expresion MAYORIGUAL expresion
+Rule 36    expresion -> expresion < expresion
+Rule 37    expresion -> expresion MENORIGUAL expresion
+Rule 38    expresion -> expresion IGUALREL expresion
+Rule 39    expresion -> expresion DIFERENTE expresion
+Rule 40    expresion -> expresion AND expresion
+Rule 41    expresion -> expresion OR expresion
+Rule 42    termino -> <empty>
+
+Terminals, with rules where they appear
+
+!                    : 25
+%                    : 32
+(                    : 9 14 27
+)                    : 9 14 27
+*                    : 30
++                    : 28
+-                    : 26 29
+/                    : 31
+;                    : 2 4 7 9
+<                    : 36
+=                    : 5 6
+>                    : 34
+AND                  : 40
+CONSTANTE            : 22
+DIFERENTE            : 39
+ELSE                 : 12
+FOR                  : 17
+FUNCION              : 27
+IF                   : 16
+IGUALREL             : 38
+INDEFINIDA           : 6
+MAYORIGUAL           : 35
+MENORIGUAL           : 37
+NUMERO               : 21
+OR                   : 41
+PRINT                : 9
+VARIABLE             : 5 23
+WHILE                : 15
+^                    : 33
+error                : 4
+{                    : 8
+}                    : 8
+
+Nonterminals, with rules where they appear
+
+asignacion           : 7 13 24
+condicion            : 10 11 12 13
+expresion            : 5 6 9 14 25 26 27 28 28 29 29 30 30 31 31 32 32 33 33 34 34 35 35 36 36 37 37 38 38 39 39 40 40 41 41
+for                  : 13
+if                   : 11 12
+lista                : 2 3 4 0
+listasentencias      : 8 19 20
+sentencia            : 3 10 11 12 12 13 20
+termino              : 10 11 12 12 13
+while                : 10
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . lista
+    (1) lista -> .
+    (2) lista -> . lista ;
+    (3) lista -> . lista sentencia
+    (4) lista -> . lista error ;
+
+    ;               reduce using rule 1 (lista -> .)
+    error           reduce using rule 1 (lista -> .)
+    {               reduce using rule 1 (lista -> .)
+    PRINT           reduce using rule 1 (lista -> .)
+    VARIABLE        reduce using rule 1 (lista -> .)
+    INDEFINIDA      reduce using rule 1 (lista -> .)
+    WHILE           reduce using rule 1 (lista -> .)
+    IF              reduce using rule 1 (lista -> .)
+    FOR             reduce using rule 1 (lista -> .)
+    $end            reduce using rule 1 (lista -> .)
+
+    lista                          shift and go to state 1
+
+state 1
+
+    (0) S' -> lista .
+    (2) lista -> lista . ;
+    (3) lista -> lista . sentencia
+    (4) lista -> lista . error ;
+    (7) sentencia -> . asignacion ;
+    (8) sentencia -> . { listasentencias }
+    (9) sentencia -> . PRINT ( expresion ) ;
+    (10) sentencia -> . while condicion sentencia termino
+    (11) sentencia -> . if condicion sentencia termino
+    (12) sentencia -> . if condicion sentencia termino ELSE sentencia termino
+    (13) sentencia -> . for asignacion condicion sentencia termino
+    (5) asignacion -> . VARIABLE = expresion
+    (6) asignacion -> . INDEFINIDA = expresion
+    (15) while -> . WHILE
+    (16) if -> . IF
+    (17) for -> . FOR
+
+    ;               shift and go to state 2
+    error           shift and go to state 4
+    {               shift and go to state 6
+    PRINT           shift and go to state 7
+    VARIABLE        shift and go to state 11
+    INDEFINIDA      shift and go to state 12
+    WHILE           shift and go to state 13
+    IF              shift and go to state 14
+    FOR             shift and go to state 15
+
+    sentencia                      shift and go to state 3
+    asignacion                     shift and go to state 5
+    while                          shift and go to state 8
+    if                             shift and go to state 9
+    for                            shift and go to state 10
+
+state 2
+
+    (2) lista -> lista ; .
+
+    ;               reduce using rule 2 (lista -> lista ; .)
+    error           reduce using rule 2 (lista -> lista ; .)
+    {               reduce using rule 2 (lista -> lista ; .)
+    PRINT           reduce using rule 2 (lista -> lista ; .)
+    VARIABLE        reduce using rule 2 (lista -> lista ; .)
+    INDEFINIDA      reduce using rule 2 (lista -> lista ; .)
+    WHILE           reduce using rule 2 (lista -> lista ; .)
+    IF              reduce using rule 2 (lista -> lista ; .)
+    FOR             reduce using rule 2 (lista -> lista ; .)
+    $end            reduce using rule 2 (lista -> lista ; .)
+
+
+state 3
+
+    (3) lista -> lista sentencia .
+
+    ;               reduce using rule 3 (lista -> lista sentencia .)
+    error           reduce using rule 3 (lista -> lista sentencia .)
+    {               reduce using rule 3 (lista -> lista sentencia .)
+    PRINT           reduce using rule 3 (lista -> lista sentencia .)
+    VARIABLE        reduce using rule 3 (lista -> lista sentencia .)
+    INDEFINIDA      reduce using rule 3 (lista -> lista sentencia .)
+    WHILE           reduce using rule 3 (lista -> lista sentencia .)
+    IF              reduce using rule 3 (lista -> lista sentencia .)
+    FOR             reduce using rule 3 (lista -> lista sentencia .)
+    $end            reduce using rule 3 (lista -> lista sentencia .)
+
+
+state 4
+
+    (4) lista -> lista error . ;
+
+    ;               shift and go to state 16
+
+
+state 5
+
+    (7) sentencia -> asignacion . ;
+
+    ;               shift and go to state 17
+
+
+state 6
+
+    (8) sentencia -> { . listasentencias }
+    (18) listasentencias -> .
+    (19) listasentencias -> . listasentencias
+    (20) listasentencias -> . listasentencias sentencia
+
+    }               reduce using rule 18 (listasentencias -> .)
+    {               reduce using rule 18 (listasentencias -> .)
+    PRINT           reduce using rule 18 (listasentencias -> .)
+    VARIABLE        reduce using rule 18 (listasentencias -> .)
+    INDEFINIDA      reduce using rule 18 (listasentencias -> .)
+    WHILE           reduce using rule 18 (listasentencias -> .)
+    IF              reduce using rule 18 (listasentencias -> .)
+    FOR             reduce using rule 18 (listasentencias -> .)
+
+    listasentencias                shift and go to state 18
+
+state 7
+
+    (9) sentencia -> PRINT . ( expresion ) ;
+
+    (               shift and go to state 19
+
+
+state 8
+
+    (10) sentencia -> while . condicion sentencia termino
+    (14) condicion -> . ( expresion )
+
+    (               shift and go to state 21
+
+    condicion                      shift and go to state 20
+
+state 9
+
+    (11) sentencia -> if . condicion sentencia termino
+    (12) sentencia -> if . condicion sentencia termino ELSE sentencia termino
+    (14) condicion -> . ( expresion )
+
+    (               shift and go to state 21
+
+    condicion                      shift and go to state 22
+
+state 10
+
+    (13) sentencia -> for . asignacion condicion sentencia termino
+    (5) asignacion -> . VARIABLE = expresion
+    (6) asignacion -> . INDEFINIDA = expresion
+
+    VARIABLE        shift and go to state 11
+    INDEFINIDA      shift and go to state 12
+
+    asignacion                     shift and go to state 23
+
+state 11
+
+    (5) asignacion -> VARIABLE . = expresion
+
+    =               shift and go to state 24
+
+
+state 12
+
+    (6) asignacion -> INDEFINIDA . = expresion
+
+    =               shift and go to state 25
+
+
+state 13
+
+    (15) while -> WHILE .
+
+    (               reduce using rule 15 (while -> WHILE .)
+
+
+state 14
+
+    (16) if -> IF .
+
+    (               reduce using rule 16 (if -> IF .)
+
+
+state 15
+
+    (17) for -> FOR .
+
+    VARIABLE        reduce using rule 17 (for -> FOR .)
+    INDEFINIDA      reduce using rule 17 (for -> FOR .)
+
+
+state 16
+
+    (4) lista -> lista error ; .
+
+    ;               reduce using rule 4 (lista -> lista error ; .)
+    error           reduce using rule 4 (lista -> lista error ; .)
+    {               reduce using rule 4 (lista -> lista error ; .)
+    PRINT           reduce using rule 4 (lista -> lista error ; .)
+    VARIABLE        reduce using rule 4 (lista -> lista error ; .)
+    INDEFINIDA      reduce using rule 4 (lista -> lista error ; .)
+    WHILE           reduce using rule 4 (lista -> lista error ; .)
+    IF              reduce using rule 4 (lista -> lista error ; .)
+    FOR             reduce using rule 4 (lista -> lista error ; .)
+    $end            reduce using rule 4 (lista -> lista error ; .)
+
+
+state 17
+
+    (7) sentencia -> asignacion ; .
+
+    ;               reduce using rule 7 (sentencia -> asignacion ; .)
+    error           reduce using rule 7 (sentencia -> asignacion ; .)
+    {               reduce using rule 7 (sentencia -> asignacion ; .)
+    PRINT           reduce using rule 7 (sentencia -> asignacion ; .)
+    VARIABLE        reduce using rule 7 (sentencia -> asignacion ; .)
+    INDEFINIDA      reduce using rule 7 (sentencia -> asignacion ; .)
+    WHILE           reduce using rule 7 (sentencia -> asignacion ; .)
+    IF              reduce using rule 7 (sentencia -> asignacion ; .)
+    FOR             reduce using rule 7 (sentencia -> asignacion ; .)
+    $end            reduce using rule 7 (sentencia -> asignacion ; .)
+    }               reduce using rule 7 (sentencia -> asignacion ; .)
+    ELSE            reduce using rule 7 (sentencia -> asignacion ; .)
+
+
+state 18
+
+    (8) sentencia -> { listasentencias . }
+    (19) listasentencias -> listasentencias .
+    (20) listasentencias -> listasentencias . sentencia
+    (7) sentencia -> . asignacion ;
+    (8) sentencia -> . { listasentencias }
+    (9) sentencia -> . PRINT ( expresion ) ;
+    (10) sentencia -> . while condicion sentencia termino
+    (11) sentencia -> . if condicion sentencia termino
+    (12) sentencia -> . if condicion sentencia termino ELSE sentencia termino
+    (13) sentencia -> . for asignacion condicion sentencia termino
+    (5) asignacion -> . VARIABLE = expresion
+    (6) asignacion -> . INDEFINIDA = expresion
+    (15) while -> . WHILE
+    (16) if -> . IF
+    (17) for -> . FOR
+
+  ! shift/reduce conflict for } resolved as shift
+  ! shift/reduce conflict for { resolved as shift
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! shift/reduce conflict for VARIABLE resolved as shift
+  ! shift/reduce conflict for INDEFINIDA resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for FOR resolved as shift
+    }               shift and go to state 26
+    {               shift and go to state 6
+    PRINT           shift and go to state 7
+    VARIABLE        shift and go to state 11
+    INDEFINIDA      shift and go to state 12
+    WHILE           shift and go to state 13
+    IF              shift and go to state 14
+    FOR             shift and go to state 15
+
+  ! }               [ reduce using rule 19 (listasentencias -> listasentencias .) ]
+  ! {               [ reduce using rule 19 (listasentencias -> listasentencias .) ]
+  ! PRINT           [ reduce using rule 19 (listasentencias -> listasentencias .) ]
+  ! VARIABLE        [ reduce using rule 19 (listasentencias -> listasentencias .) ]
+  ! INDEFINIDA      [ reduce using rule 19 (listasentencias -> listasentencias .) ]
+  ! WHILE           [ reduce using rule 19 (listasentencias -> listasentencias .) ]
+  ! IF              [ reduce using rule 19 (listasentencias -> listasentencias .) ]
+  ! FOR             [ reduce using rule 19 (listasentencias -> listasentencias .) ]
+
+    sentencia                      shift and go to state 27
+    asignacion                     shift and go to state 5
+    while                          shift and go to state 8
+    if                             shift and go to state 9
+    for                            shift and go to state 10
+
+state 19
+
+    (9) sentencia -> PRINT ( . expresion ) ;
+    (21) expresion -> . NUMERO
+    (22) expresion -> . CONSTANTE
+    (23) expresion -> . VARIABLE
+    (24) expresion -> . asignacion
+    (25) expresion -> . ! expresion
+    (26) expresion -> . - expresion
+    (27) expresion -> . FUNCION ( expresion )
+    (28) expresion -> . expresion + expresion
+    (29) expresion -> . expresion - expresion
+    (30) expresion -> . expresion * expresion
+    (31) expresion -> . expresion / expresion
+    (32) expresion -> . expresion % expresion
+    (33) expresion -> . expresion ^ expresion
+    (34) expresion -> . expresion > expresion
+    (35) expresion -> . expresion MAYORIGUAL expresion
+    (36) expresion -> . expresion < expresion
+    (37) expresion -> . expresion MENORIGUAL expresion
+    (38) expresion -> . expresion IGUALREL expresion
+    (39) expresion -> . expresion DIFERENTE expresion
+    (40) expresion -> . expresion AND expresion
+    (41) expresion -> . expresion OR expresion
+    (5) asignacion -> . VARIABLE = expresion
+    (6) asignacion -> . INDEFINIDA = expresion
+
+    NUMERO          shift and go to state 29
+    CONSTANTE       shift and go to state 30
+    VARIABLE        shift and go to state 31
+    !               shift and go to state 33
+    -               shift and go to state 34
+    FUNCION         shift and go to state 35
+    INDEFINIDA      shift and go to state 12
+
+    expresion                      shift and go to state 28
+    asignacion                     shift and go to state 32
+
+state 20
+
+    (10) sentencia -> while condicion . sentencia termino
+    (7) sentencia -> . asignacion ;
+    (8) sentencia -> . { listasentencias }
+    (9) sentencia -> . PRINT ( expresion ) ;
+    (10) sentencia -> . while condicion sentencia termino
+    (11) sentencia -> . if condicion sentencia termino
+    (12) sentencia -> . if condicion sentencia termino ELSE sentencia termino
+    (13) sentencia -> . for asignacion condicion sentencia termino
+    (5) asignacion -> . VARIABLE = expresion
+    (6) asignacion -> . INDEFINIDA = expresion
+    (15) while -> . WHILE
+    (16) if -> . IF
+    (17) for -> . FOR
+
+    {               shift and go to state 6
+    PRINT           shift and go to state 7
+    VARIABLE        shift and go to state 11
+    INDEFINIDA      shift and go to state 12
+    WHILE           shift and go to state 13
+    IF              shift and go to state 14
+    FOR             shift and go to state 15
+
+    while                          shift and go to state 8
+    sentencia                      shift and go to state 36
+    asignacion                     shift and go to state 5
+    if                             shift and go to state 9
+    for                            shift and go to state 10
+
+state 21
+
+    (14) condicion -> ( . expresion )
+    (21) expresion -> . NUMERO
+    (22) expresion -> . CONSTANTE
+    (23) expresion -> . VARIABLE
+    (24) expresion -> . asignacion
+    (25) expresion -> . ! expresion
+    (26) expresion -> . - expresion
+    (27) expresion -> . FUNCION ( expresion )
+    (28) expresion -> . expresion + expresion
+    (29) expresion -> . expresion - expresion
+    (30) expresion -> . expresion * expresion
+    (31) expresion -> . expresion / expresion
+    (32) expresion -> . expresion % expresion
+    (33) expresion -> . expresion ^ expresion
+    (34) expresion -> . expresion > expresion
+    (35) expresion -> . expresion MAYORIGUAL expresion
+    (36) expresion -> . expresion < expresion
+    (37) expresion -> . expresion MENORIGUAL expresion
+    (38) expresion -> . expresion IGUALREL expresion
+    (39) expresion -> . expresion DIFERENTE expresion
+    (40) expresion -> . expresion AND expresion
+    (41) expresion -> . expresion OR expresion
+    (5) asignacion -> . VARIABLE = expresion
+    (6) asignacion -> . INDEFINIDA = expresion
+
+    NUMERO          shift and go to state 29
+    CONSTANTE       shift and go to state 30
+    VARIABLE        shift and go to state 31
+    !               shift and go to state 33
+    -               shift and go to state 34
+    FUNCION         shift and go to state 35
+    INDEFINIDA      shift and go to state 12
+
+    expresion                      shift and go to state 37
+    asignacion                     shift and go to state 32
+
+state 22
+
+    (11) sentencia -> if condicion . sentencia termino
+    (12) sentencia -> if condicion . sentencia termino ELSE sentencia termino
+    (7) sentencia -> . asignacion ;
+    (8) sentencia -> . { listasentencias }
+    (9) sentencia -> . PRINT ( expresion ) ;
+    (10) sentencia -> . while condicion sentencia termino
+    (11) sentencia -> . if condicion sentencia termino
+    (12) sentencia -> . if condicion sentencia termino ELSE sentencia termino
+    (13) sentencia -> . for asignacion condicion sentencia termino
+    (5) asignacion -> . VARIABLE = expresion
+    (6) asignacion -> . INDEFINIDA = expresion
+    (15) while -> . WHILE
+    (16) if -> . IF
+    (17) for -> . FOR
+
+    {               shift and go to state 6
+    PRINT           shift and go to state 7
+    VARIABLE        shift and go to state 11
+    INDEFINIDA      shift and go to state 12
+    WHILE           shift and go to state 13
+    IF              shift and go to state 14
+    FOR             shift and go to state 15
+
+    if                             shift and go to state 9
+    sentencia                      shift and go to state 38
+    asignacion                     shift and go to state 5
+    while                          shift and go to state 8
+    for                            shift and go to state 10
+
+state 23
+
+    (13) sentencia -> for asignacion . condicion sentencia termino
+    (14) condicion -> . ( expresion )
+
+    (               shift and go to state 21
+
+    condicion                      shift and go to state 39
+
+state 24
+
+    (5) asignacion -> VARIABLE = . expresion
+    (21) expresion -> . NUMERO
+    (22) expresion -> . CONSTANTE
+    (23) expresion -> . VARIABLE
+    (24) expresion -> . asignacion
+    (25) expresion -> . ! expresion
+    (26) expresion -> . - expresion
+    (27) expresion -> . FUNCION ( expresion )
+    (28) expresion -> . expresion + expresion
+    (29) expresion -> . expresion - expresion
+    (30) expresion -> . expresion * expresion
+    (31) expresion -> . expresion / expresion
+    (32) expresion -> . expresion % expresion
+    (33) expresion -> . expresion ^ expresion
+    (34) expresion -> . expresion > expresion
+    (35) expresion -> . expresion MAYORIGUAL expresion
+    (36) expresion -> . expresion < expresion
+    (37) expresion -> . expresion MENORIGUAL expresion
+    (38) expresion -> . expresion IGUALREL expresion
+    (39) expresion -> . expresion DIFERENTE expresion
+    (40) expresion -> . expresion AND expresion
+    (41) expresion -> . expresion OR expresion
+    (5) asignacion -> . VARIABLE = expresion
+    (6) asignacion -> . INDEFINIDA = expresion
+
+    NUMERO          shift and go to state 29
+    CONSTANTE       shift and go to state 30
+    VARIABLE        shift and go to state 31
+    !               shift and go to state 33
+    -               shift and go to state 34
+    FUNCION         shift and go to state 35
+    INDEFINIDA      shift and go to state 12
+
+    expresion                      shift and go to state 40
+    asignacion                     shift and go to state 32
+
+state 25
+
+    (6) asignacion -> INDEFINIDA = . expresion
+    (21) expresion -> . NUMERO
+    (22) expresion -> . CONSTANTE
+    (23) expresion -> . VARIABLE
+    (24) expresion -> . asignacion
+    (25) expresion -> . ! expresion
+    (26) expresion -> . - expresion
+    (27) expresion -> . FUNCION ( expresion )
+    (28) expresion -> . expresion + expresion
+    (29) expresion -> . expresion - expresion
+    (30) expresion -> . expresion * expresion
+    (31) expresion -> . expresion / expresion
+    (32) expresion -> . expresion % expresion
+    (33) expresion -> . expresion ^ expresion
+    (34) expresion -> . expresion > expresion
+    (35) expresion -> . expresion MAYORIGUAL expresion
+    (36) expresion -> . expresion < expresion
+    (37) expresion -> . expresion MENORIGUAL expresion
+    (38) expresion -> . expresion IGUALREL expresion
+    (39) expresion -> . expresion DIFERENTE expresion
+    (40) expresion -> . expresion AND expresion
+    (41) expresion -> . expresion OR expresion
+    (5) asignacion -> . VARIABLE = expresion
+    (6) asignacion -> . INDEFINIDA = expresion
+
+    NUMERO          shift and go to state 29
+    CONSTANTE       shift and go to state 30
+    VARIABLE        shift and go to state 31
+    !               shift and go to state 33
+    -               shift and go to state 34
+    FUNCION         shift and go to state 35
+    INDEFINIDA      shift and go to state 12
+
+    expresion                      shift and go to state 41
+    asignacion                     shift and go to state 32
+
+state 26
+
+    (8) sentencia -> { listasentencias } .
+
+    ;               reduce using rule 8 (sentencia -> { listasentencias } .)
+    error           reduce using rule 8 (sentencia -> { listasentencias } .)
+    {               reduce using rule 8 (sentencia -> { listasentencias } .)
+    PRINT           reduce using rule 8 (sentencia -> { listasentencias } .)
+    VARIABLE        reduce using rule 8 (sentencia -> { listasentencias } .)
+    INDEFINIDA      reduce using rule 8 (sentencia -> { listasentencias } .)
+    WHILE           reduce using rule 8 (sentencia -> { listasentencias } .)
+    IF              reduce using rule 8 (sentencia -> { listasentencias } .)
+    FOR             reduce using rule 8 (sentencia -> { listasentencias } .)
+    $end            reduce using rule 8 (sentencia -> { listasentencias } .)
+    }               reduce using rule 8 (sentencia -> { listasentencias } .)
+    ELSE            reduce using rule 8 (sentencia -> { listasentencias } .)
+
+
+state 27
+
+    (20) listasentencias -> listasentencias sentencia .
+
+    }               reduce using rule 20 (listasentencias -> listasentencias sentencia .)
+    {               reduce using rule 20 (listasentencias -> listasentencias sentencia .)
+    PRINT           reduce using rule 20 (listasentencias -> listasentencias sentencia .)
+    VARIABLE        reduce using rule 20 (listasentencias -> listasentencias sentencia .)
+    INDEFINIDA      reduce using rule 20 (listasentencias -> listasentencias sentencia .)
+    WHILE           reduce using rule 20 (listasentencias -> listasentencias sentencia .)
+    IF              reduce using rule 20 (listasentencias -> listasentencias sentencia .)
+    FOR             reduce using rule 20 (listasentencias -> listasentencias sentencia .)
+
+
+state 28
+
+    (9) sentencia -> PRINT ( expresion . ) ;
+    (28) expresion -> expresion . + expresion
+    (29) expresion -> expresion . - expresion
+    (30) expresion -> expresion . * expresion
+    (31) expresion -> expresion . / expresion
+    (32) expresion -> expresion . % expresion
+    (33) expresion -> expresion . ^ expresion
+    (34) expresion -> expresion . > expresion
+    (35) expresion -> expresion . MAYORIGUAL expresion
+    (36) expresion -> expresion . < expresion
+    (37) expresion -> expresion . MENORIGUAL expresion
+    (38) expresion -> expresion . IGUALREL expresion
+    (39) expresion -> expresion . DIFERENTE expresion
+    (40) expresion -> expresion . AND expresion
+    (41) expresion -> expresion . OR expresion
+
+    )               shift and go to state 42
+    +               shift and go to state 43
+    -               shift and go to state 44
+    *               shift and go to state 45
+    /               shift and go to state 46
+    %               shift and go to state 47
+    ^               shift and go to state 48
+    >               shift and go to state 49
+    MAYORIGUAL      shift and go to state 50
+    <               shift and go to state 51
+    MENORIGUAL      shift and go to state 52
+    IGUALREL        shift and go to state 53
+    DIFERENTE       shift and go to state 54
+    AND             shift and go to state 55
+    OR              shift and go to state 56
+
+
+state 29
+
+    (21) expresion -> NUMERO .
+
+    )               reduce using rule 21 (expresion -> NUMERO .)
+    +               reduce using rule 21 (expresion -> NUMERO .)
+    -               reduce using rule 21 (expresion -> NUMERO .)
+    *               reduce using rule 21 (expresion -> NUMERO .)
+    /               reduce using rule 21 (expresion -> NUMERO .)
+    %               reduce using rule 21 (expresion -> NUMERO .)
+    ^               reduce using rule 21 (expresion -> NUMERO .)
+    >               reduce using rule 21 (expresion -> NUMERO .)
+    MAYORIGUAL      reduce using rule 21 (expresion -> NUMERO .)
+    <               reduce using rule 21 (expresion -> NUMERO .)
+    MENORIGUAL      reduce using rule 21 (expresion -> NUMERO .)
+    IGUALREL        reduce using rule 21 (expresion -> NUMERO .)
+    DIFERENTE       reduce using rule 21 (expresion -> NUMERO .)
+    AND             reduce using rule 21 (expresion -> NUMERO .)
+    OR              reduce using rule 21 (expresion -> NUMERO .)
+    ;               reduce using rule 21 (expresion -> NUMERO .)
+    (               reduce using rule 21 (expresion -> NUMERO .)
+
+
+state 30
+
+    (22) expresion -> CONSTANTE .
+
+    )               reduce using rule 22 (expresion -> CONSTANTE .)
+    +               reduce using rule 22 (expresion -> CONSTANTE .)
+    -               reduce using rule 22 (expresion -> CONSTANTE .)
+    *               reduce using rule 22 (expresion -> CONSTANTE .)
+    /               reduce using rule 22 (expresion -> CONSTANTE .)
+    %               reduce using rule 22 (expresion -> CONSTANTE .)
+    ^               reduce using rule 22 (expresion -> CONSTANTE .)
+    >               reduce using rule 22 (expresion -> CONSTANTE .)
+    MAYORIGUAL      reduce using rule 22 (expresion -> CONSTANTE .)
+    <               reduce using rule 22 (expresion -> CONSTANTE .)
+    MENORIGUAL      reduce using rule 22 (expresion -> CONSTANTE .)
+    IGUALREL        reduce using rule 22 (expresion -> CONSTANTE .)
+    DIFERENTE       reduce using rule 22 (expresion -> CONSTANTE .)
+    AND             reduce using rule 22 (expresion -> CONSTANTE .)
+    OR              reduce using rule 22 (expresion -> CONSTANTE .)
+    ;               reduce using rule 22 (expresion -> CONSTANTE .)
+    (               reduce using rule 22 (expresion -> CONSTANTE .)
+
+
+state 31
+
+    (23) expresion -> VARIABLE .
+    (5) asignacion -> VARIABLE . = expresion
+
+    )               reduce using rule 23 (expresion -> VARIABLE .)
+    +               reduce using rule 23 (expresion -> VARIABLE .)
+    -               reduce using rule 23 (expresion -> VARIABLE .)
+    *               reduce using rule 23 (expresion -> VARIABLE .)
+    /               reduce using rule 23 (expresion -> VARIABLE .)
+    %               reduce using rule 23 (expresion -> VARIABLE .)
+    ^               reduce using rule 23 (expresion -> VARIABLE .)
+    >               reduce using rule 23 (expresion -> VARIABLE .)
+    MAYORIGUAL      reduce using rule 23 (expresion -> VARIABLE .)
+    <               reduce using rule 23 (expresion -> VARIABLE .)
+    MENORIGUAL      reduce using rule 23 (expresion -> VARIABLE .)
+    IGUALREL        reduce using rule 23 (expresion -> VARIABLE .)
+    DIFERENTE       reduce using rule 23 (expresion -> VARIABLE .)
+    AND             reduce using rule 23 (expresion -> VARIABLE .)
+    OR              reduce using rule 23 (expresion -> VARIABLE .)
+    ;               reduce using rule 23 (expresion -> VARIABLE .)
+    (               reduce using rule 23 (expresion -> VARIABLE .)
+    =               shift and go to state 24
+
+
+state 32
+
+    (24) expresion -> asignacion .
+
+    )               reduce using rule 24 (expresion -> asignacion .)
+    +               reduce using rule 24 (expresion -> asignacion .)
+    -               reduce using rule 24 (expresion -> asignacion .)
+    *               reduce using rule 24 (expresion -> asignacion .)
+    /               reduce using rule 24 (expresion -> asignacion .)
+    %               reduce using rule 24 (expresion -> asignacion .)
+    ^               reduce using rule 24 (expresion -> asignacion .)
+    >               reduce using rule 24 (expresion -> asignacion .)
+    MAYORIGUAL      reduce using rule 24 (expresion -> asignacion .)
+    <               reduce using rule 24 (expresion -> asignacion .)
+    MENORIGUAL      reduce using rule 24 (expresion -> asignacion .)
+    IGUALREL        reduce using rule 24 (expresion -> asignacion .)
+    DIFERENTE       reduce using rule 24 (expresion -> asignacion .)
+    AND             reduce using rule 24 (expresion -> asignacion .)
+    OR              reduce using rule 24 (expresion -> asignacion .)
+    ;               reduce using rule 24 (expresion -> asignacion .)
+    (               reduce using rule 24 (expresion -> asignacion .)
+
+
+state 33
+
+    (25) expresion -> ! . expresion
+    (21) expresion -> . NUMERO
+    (22) expresion -> . CONSTANTE
+    (23) expresion -> . VARIABLE
+    (24) expresion -> . asignacion
+    (25) expresion -> . ! expresion
+    (26) expresion -> . - expresion
+    (27) expresion -> . FUNCION ( expresion )
+    (28) expresion -> . expresion + expresion
+    (29) expresion -> . expresion - expresion
+    (30) expresion -> . expresion * expresion
+    (31) expresion -> . expresion / expresion
+    (32) expresion -> . expresion % expresion
+    (33) expresion -> . expresion ^ expresion
+    (34) expresion -> . expresion > expresion
+    (35) expresion -> . expresion MAYORIGUAL expresion
+    (36) expresion -> . expresion < expresion
+    (37) expresion -> . expresion MENORIGUAL expresion
+    (38) expresion -> . expresion IGUALREL expresion
+    (39) expresion -> . expresion DIFERENTE expresion
+    (40) expresion -> . expresion AND expresion
+    (41) expresion -> . expresion OR expresion
+    (5) asignacion -> . VARIABLE = expresion
+    (6) asignacion -> . INDEFINIDA = expresion
+
+    NUMERO          shift and go to state 29
+    CONSTANTE       shift and go to state 30
+    VARIABLE        shift and go to state 31
+    !               shift and go to state 33
+    -               shift and go to state 34
+    FUNCION         shift and go to state 35
+    INDEFINIDA      shift and go to state 12
+
+    expresion                      shift and go to state 57
+    asignacion                     shift and go to state 32
+
+state 34
+
+    (26) expresion -> - . expresion
+    (21) expresion -> . NUMERO
+    (22) expresion -> . CONSTANTE
+    (23) expresion -> . VARIABLE
+    (24) expresion -> . asignacion
+    (25) expresion -> . ! expresion
+    (26) expresion -> . - expresion
+    (27) expresion -> . FUNCION ( expresion )
+    (28) expresion -> . expresion + expresion
+    (29) expresion -> . expresion - expresion
+    (30) expresion -> . expresion * expresion
+    (31) expresion -> . expresion / expresion
+    (32) expresion -> . expresion % expresion
+    (33) expresion -> . expresion ^ expresion
+    (34) expresion -> . expresion > expresion
+    (35) expresion -> . expresion MAYORIGUAL expresion
+    (36) expresion -> . expresion < expresion
+    (37) expresion -> . expresion MENORIGUAL expresion
+    (38) expresion -> . expresion IGUALREL expresion
+    (39) expresion -> . expresion DIFERENTE expresion
+    (40) expresion -> . expresion AND expresion
+    (41) expresion -> . expresion OR expresion
+    (5) asignacion -> . VARIABLE = expresion
+    (6) asignacion -> . INDEFINIDA = expresion
+
+    NUMERO          shift and go to state 29
+    CONSTANTE       shift and go to state 30
+    VARIABLE        shift and go to state 31
+    !               shift and go to state 33
+    -               shift and go to state 34
+    FUNCION         shift and go to state 35
+    INDEFINIDA      shift and go to state 12
+
+    expresion                      shift and go to state 58
+    asignacion                     shift and go to state 32
+
+state 35
+
+    (27) expresion -> FUNCION . ( expresion )
+
+    (               shift and go to state 59
+
+
+state 36
+
+    (10) sentencia -> while condicion sentencia . termino
+    (42) termino -> .
+
+    ;               reduce using rule 42 (termino -> .)
+    error           reduce using rule 42 (termino -> .)
+    {               reduce using rule 42 (termino -> .)
+    PRINT           reduce using rule 42 (termino -> .)
+    VARIABLE        reduce using rule 42 (termino -> .)
+    INDEFINIDA      reduce using rule 42 (termino -> .)
+    WHILE           reduce using rule 42 (termino -> .)
+    IF              reduce using rule 42 (termino -> .)
+    FOR             reduce using rule 42 (termino -> .)
+    $end            reduce using rule 42 (termino -> .)
+    }               reduce using rule 42 (termino -> .)
+    ELSE            reduce using rule 42 (termino -> .)
+
+    termino                        shift and go to state 60
+
+state 37
+
+    (14) condicion -> ( expresion . )
+    (28) expresion -> expresion . + expresion
+    (29) expresion -> expresion . - expresion
+    (30) expresion -> expresion . * expresion
+    (31) expresion -> expresion . / expresion
+    (32) expresion -> expresion . % expresion
+    (33) expresion -> expresion . ^ expresion
+    (34) expresion -> expresion . > expresion
+    (35) expresion -> expresion . MAYORIGUAL expresion
+    (36) expresion -> expresion . < expresion
+    (37) expresion -> expresion . MENORIGUAL expresion
+    (38) expresion -> expresion . IGUALREL expresion
+    (39) expresion -> expresion . DIFERENTE expresion
+    (40) expresion -> expresion . AND expresion
+    (41) expresion -> expresion . OR expresion
+
+    )               shift and go to state 61
+    +               shift and go to state 43
+    -               shift and go to state 44
+    *               shift and go to state 45
+    /               shift and go to state 46
+    %               shift and go to state 47
+    ^               shift and go to state 48
+    >               shift and go to state 49
+    MAYORIGUAL      shift and go to state 50
+    <               shift and go to state 51
+    MENORIGUAL      shift and go to state 52
+    IGUALREL        shift and go to state 53
+    DIFERENTE       shift and go to state 54
+    AND             shift and go to state 55
+    OR              shift and go to state 56
+
+
+state 38
+
+    (11) sentencia -> if condicion sentencia . termino
+    (12) sentencia -> if condicion sentencia . termino ELSE sentencia termino
+    (42) termino -> .
+
+    ELSE            reduce using rule 42 (termino -> .)
+    ;               reduce using rule 42 (termino -> .)
+    error           reduce using rule 42 (termino -> .)
+    {               reduce using rule 42 (termino -> .)
+    PRINT           reduce using rule 42 (termino -> .)
+    VARIABLE        reduce using rule 42 (termino -> .)
+    INDEFINIDA      reduce using rule 42 (termino -> .)
+    WHILE           reduce using rule 42 (termino -> .)
+    IF              reduce using rule 42 (termino -> .)
+    FOR             reduce using rule 42 (termino -> .)
+    $end            reduce using rule 42 (termino -> .)
+    }               reduce using rule 42 (termino -> .)
+
+    termino                        shift and go to state 62
+
+state 39
+
+    (13) sentencia -> for asignacion condicion . sentencia termino
+    (7) sentencia -> . asignacion ;
+    (8) sentencia -> . { listasentencias }
+    (9) sentencia -> . PRINT ( expresion ) ;
+    (10) sentencia -> . while condicion sentencia termino
+    (11) sentencia -> . if condicion sentencia termino
+    (12) sentencia -> . if condicion sentencia termino ELSE sentencia termino
+    (13) sentencia -> . for asignacion condicion sentencia termino
+    (5) asignacion -> . VARIABLE = expresion
+    (6) asignacion -> . INDEFINIDA = expresion
+    (15) while -> . WHILE
+    (16) if -> . IF
+    (17) for -> . FOR
+
+    {               shift and go to state 6
+    PRINT           shift and go to state 7
+    VARIABLE        shift and go to state 11
+    INDEFINIDA      shift and go to state 12
+    WHILE           shift and go to state 13
+    IF              shift and go to state 14
+    FOR             shift and go to state 15
+
+    for                            shift and go to state 10
+    asignacion                     shift and go to state 5
+    sentencia                      shift and go to state 63
+    while                          shift and go to state 8
+    if                             shift and go to state 9
+
+state 40
+
+    (5) asignacion -> VARIABLE = expresion .
+    (28) expresion -> expresion . + expresion
+    (29) expresion -> expresion . - expresion
+    (30) expresion -> expresion . * expresion
+    (31) expresion -> expresion . / expresion
+    (32) expresion -> expresion . % expresion
+    (33) expresion -> expresion . ^ expresion
+    (34) expresion -> expresion . > expresion
+    (35) expresion -> expresion . MAYORIGUAL expresion
+    (36) expresion -> expresion . < expresion
+    (37) expresion -> expresion . MENORIGUAL expresion
+    (38) expresion -> expresion . IGUALREL expresion
+    (39) expresion -> expresion . DIFERENTE expresion
+    (40) expresion -> expresion . AND expresion
+    (41) expresion -> expresion . OR expresion
+
+  ! shift/reduce conflict for + resolved as shift
+  ! shift/reduce conflict for - resolved as shift
+  ! shift/reduce conflict for * resolved as shift
+  ! shift/reduce conflict for / resolved as shift
+  ! shift/reduce conflict for % resolved as shift
+  ! shift/reduce conflict for ^ resolved as shift
+  ! shift/reduce conflict for > resolved as shift
+  ! shift/reduce conflict for MAYORIGUAL resolved as shift
+  ! shift/reduce conflict for < resolved as shift
+  ! shift/reduce conflict for MENORIGUAL resolved as shift
+  ! shift/reduce conflict for IGUALREL resolved as shift
+  ! shift/reduce conflict for DIFERENTE resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+    ;               reduce using rule 5 (asignacion -> VARIABLE = expresion .)
+    (               reduce using rule 5 (asignacion -> VARIABLE = expresion .)
+    )               reduce using rule 5 (asignacion -> VARIABLE = expresion .)
+    +               shift and go to state 43
+    -               shift and go to state 44
+    *               shift and go to state 45
+    /               shift and go to state 46
+    %               shift and go to state 47
+    ^               shift and go to state 48
+    >               shift and go to state 49
+    MAYORIGUAL      shift and go to state 50
+    <               shift and go to state 51
+    MENORIGUAL      shift and go to state 52
+    IGUALREL        shift and go to state 53
+    DIFERENTE       shift and go to state 54
+    AND             shift and go to state 55
+    OR              shift and go to state 56
+
+  ! +               [ reduce using rule 5 (asignacion -> VARIABLE = expresion .) ]
+  ! -               [ reduce using rule 5 (asignacion -> VARIABLE = expresion .) ]
+  ! *               [ reduce using rule 5 (asignacion -> VARIABLE = expresion .) ]
+  ! /               [ reduce using rule 5 (asignacion -> VARIABLE = expresion .) ]
+  ! %               [ reduce using rule 5 (asignacion -> VARIABLE = expresion .) ]
+  ! ^               [ reduce using rule 5 (asignacion -> VARIABLE = expresion .) ]
+  ! >               [ reduce using rule 5 (asignacion -> VARIABLE = expresion .) ]
+  ! MAYORIGUAL      [ reduce using rule 5 (asignacion -> VARIABLE = expresion .) ]
+  ! <               [ reduce using rule 5 (asignacion -> VARIABLE = expresion .) ]
+  ! MENORIGUAL      [ reduce using rule 5 (asignacion -> VARIABLE = expresion .) ]
+  ! IGUALREL        [ reduce using rule 5 (asignacion -> VARIABLE = expresion .) ]
+  ! DIFERENTE       [ reduce using rule 5 (asignacion -> VARIABLE = expresion .) ]
+  ! AND             [ reduce using rule 5 (asignacion -> VARIABLE = expresion .) ]
+  ! OR              [ reduce using rule 5 (asignacion -> VARIABLE = expresion .) ]
+
+
+state 41
+
+    (6) asignacion -> INDEFINIDA = expresion .
+    (28) expresion -> expresion . + expresion
+    (29) expresion -> expresion . - expresion
+    (30) expresion -> expresion . * expresion
+    (31) expresion -> expresion . / expresion
+    (32) expresion -> expresion . % expresion
+    (33) expresion -> expresion . ^ expresion
+    (34) expresion -> expresion . > expresion
+    (35) expresion -> expresion . MAYORIGUAL expresion
+    (36) expresion -> expresion . < expresion
+    (37) expresion -> expresion . MENORIGUAL expresion
+    (38) expresion -> expresion . IGUALREL expresion
+    (39) expresion -> expresion . DIFERENTE expresion
+    (40) expresion -> expresion . AND expresion
+    (41) expresion -> expresion . OR expresion
+
+  ! shift/reduce conflict for + resolved as shift
+  ! shift/reduce conflict for - resolved as shift
+  ! shift/reduce conflict for * resolved as shift
+  ! shift/reduce conflict for / resolved as shift
+  ! shift/reduce conflict for % resolved as shift
+  ! shift/reduce conflict for ^ resolved as shift
+  ! shift/reduce conflict for > resolved as shift
+  ! shift/reduce conflict for MAYORIGUAL resolved as shift
+  ! shift/reduce conflict for < resolved as shift
+  ! shift/reduce conflict for MENORIGUAL resolved as shift
+  ! shift/reduce conflict for IGUALREL resolved as shift
+  ! shift/reduce conflict for DIFERENTE resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+    ;               reduce using rule 6 (asignacion -> INDEFINIDA = expresion .)
+    (               reduce using rule 6 (asignacion -> INDEFINIDA = expresion .)
+    )               reduce using rule 6 (asignacion -> INDEFINIDA = expresion .)
+    +               shift and go to state 43
+    -               shift and go to state 44
+    *               shift and go to state 45
+    /               shift and go to state 46
+    %               shift and go to state 47
+    ^               shift and go to state 48
+    >               shift and go to state 49
+    MAYORIGUAL      shift and go to state 50
+    <               shift and go to state 51
+    MENORIGUAL      shift and go to state 52
+    IGUALREL        shift and go to state 53
+    DIFERENTE       shift and go to state 54
+    AND             shift and go to state 55
+    OR              shift and go to state 56
+
+  ! +               [ reduce using rule 6 (asignacion -> INDEFINIDA = expresion .) ]
+  ! -               [ reduce using rule 6 (asignacion -> INDEFINIDA = expresion .) ]
+  ! *               [ reduce using rule 6 (asignacion -> INDEFINIDA = expresion .) ]
+  ! /               [ reduce using rule 6 (asignacion -> INDEFINIDA = expresion .) ]
+  ! %               [ reduce using rule 6 (asignacion -> INDEFINIDA = expresion .) ]
+  ! ^               [ reduce using rule 6 (asignacion -> INDEFINIDA = expresion .) ]
+  ! >               [ reduce using rule 6 (asignacion -> INDEFINIDA = expresion .) ]
+  ! MAYORIGUAL      [ reduce using rule 6 (asignacion -> INDEFINIDA = expresion .) ]
+  ! <               [ reduce using rule 6 (asignacion -> INDEFINIDA = expresion .) ]
+  ! MENORIGUAL      [ reduce using rule 6 (asignacion -> INDEFINIDA = expresion .) ]
+  ! IGUALREL        [ reduce using rule 6 (asignacion -> INDEFINIDA = expresion .) ]
+  ! DIFERENTE       [ reduce using rule 6 (asignacion -> INDEFINIDA = expresion .) ]
+  ! AND             [ reduce using rule 6 (asignacion -> INDEFINIDA = expresion .) ]
+  ! OR              [ reduce using rule 6 (asignacion -> INDEFINIDA = expresion .) ]
+
+
+state 42
+
+    (9) sentencia -> PRINT ( expresion ) . ;
+
+    ;               shift and go to state 64
+
+
+state 43
+
+    (28) expresion -> expresion + . expresion
+    (21) expresion -> . NUMERO
+    (22) expresion -> . CONSTANTE
+    (23) expresion -> . VARIABLE
+    (24) expresion -> . asignacion
+    (25) expresion -> . ! expresion
+    (26) expresion -> . - expresion
+    (27) expresion -> . FUNCION ( expresion )
+    (28) expresion -> . expresion + expresion
+    (29) expresion -> . expresion - expresion
+    (30) expresion -> . expresion * expresion
+    (31) expresion -> . expresion / expresion
+    (32) expresion -> . expresion % expresion
+    (33) expresion -> . expresion ^ expresion
+    (34) expresion -> . expresion > expresion
+    (35) expresion -> . expresion MAYORIGUAL expresion
+    (36) expresion -> . expresion < expresion
+    (37) expresion -> . expresion MENORIGUAL expresion
+    (38) expresion -> . expresion IGUALREL expresion
+    (39) expresion -> . expresion DIFERENTE expresion
+    (40) expresion -> . expresion AND expresion
+    (41) expresion -> . expresion OR expresion
+    (5) asignacion -> . VARIABLE = expresion
+    (6) asignacion -> . INDEFINIDA = expresion
+
+    NUMERO          shift and go to state 29
+    CONSTANTE       shift and go to state 30
+    VARIABLE        shift and go to state 31
+    !               shift and go to state 33
+    -               shift and go to state 34
+    FUNCION         shift and go to state 35
+    INDEFINIDA      shift and go to state 12
+
+    expresion                      shift and go to state 65
+    asignacion                     shift and go to state 32
+
+state 44
+
+    (29) expresion -> expresion - . expresion
+    (21) expresion -> . NUMERO
+    (22) expresion -> . CONSTANTE
+    (23) expresion -> . VARIABLE
+    (24) expresion -> . asignacion
+    (25) expresion -> . ! expresion
+    (26) expresion -> . - expresion
+    (27) expresion -> . FUNCION ( expresion )
+    (28) expresion -> . expresion + expresion
+    (29) expresion -> . expresion - expresion
+    (30) expresion -> . expresion * expresion
+    (31) expresion -> . expresion / expresion
+    (32) expresion -> . expresion % expresion
+    (33) expresion -> . expresion ^ expresion
+    (34) expresion -> . expresion > expresion
+    (35) expresion -> . expresion MAYORIGUAL expresion
+    (36) expresion -> . expresion < expresion
+    (37) expresion -> . expresion MENORIGUAL expresion
+    (38) expresion -> . expresion IGUALREL expresion
+    (39) expresion -> . expresion DIFERENTE expresion
+    (40) expresion -> . expresion AND expresion
+    (41) expresion -> . expresion OR expresion
+    (5) asignacion -> . VARIABLE = expresion
+    (6) asignacion -> . INDEFINIDA = expresion
+
+    NUMERO          shift and go to state 29
+    CONSTANTE       shift and go to state 30
+    VARIABLE        shift and go to state 31
+    !               shift and go to state 33
+    -               shift and go to state 34
+    FUNCION         shift and go to state 35
+    INDEFINIDA      shift and go to state 12
+
+    expresion                      shift and go to state 66
+    asignacion                     shift and go to state 32
+
+state 45
+
+    (30) expresion -> expresion * . expresion
+    (21) expresion -> . NUMERO
+    (22) expresion -> . CONSTANTE
+    (23) expresion -> . VARIABLE
+    (24) expresion -> . asignacion
+    (25) expresion -> . ! expresion
+    (26) expresion -> . - expresion
+    (27) expresion -> . FUNCION ( expresion )
+    (28) expresion -> . expresion + expresion
+    (29) expresion -> . expresion - expresion
+    (30) expresion -> . expresion * expresion
+    (31) expresion -> . expresion / expresion
+    (32) expresion -> . expresion % expresion
+    (33) expresion -> . expresion ^ expresion
+    (34) expresion -> . expresion > expresion
+    (35) expresion -> . expresion MAYORIGUAL expresion
+    (36) expresion -> . expresion < expresion
+    (37) expresion -> . expresion MENORIGUAL expresion
+    (38) expresion -> . expresion IGUALREL expresion
+    (39) expresion -> . expresion DIFERENTE expresion
+    (40) expresion -> . expresion AND expresion
+    (41) expresion -> . expresion OR expresion
+    (5) asignacion -> . VARIABLE = expresion
+    (6) asignacion -> . INDEFINIDA = expresion
+
+    NUMERO          shift and go to state 29
+    CONSTANTE       shift and go to state 30
+    VARIABLE        shift and go to state 31
+    !               shift and go to state 33
+    -               shift and go to state 34
+    FUNCION         shift and go to state 35
+    INDEFINIDA      shift and go to state 12
+
+    expresion                      shift and go to state 67
+    asignacion                     shift and go to state 32
+
+state 46
+
+    (31) expresion -> expresion / . expresion
+    (21) expresion -> . NUMERO
+    (22) expresion -> . CONSTANTE
+    (23) expresion -> . VARIABLE
+    (24) expresion -> . asignacion
+    (25) expresion -> . ! expresion
+    (26) expresion -> . - expresion
+    (27) expresion -> . FUNCION ( expresion )
+    (28) expresion -> . expresion + expresion
+    (29) expresion -> . expresion - expresion
+    (30) expresion -> . expresion * expresion
+    (31) expresion -> . expresion / expresion
+    (32) expresion -> . expresion % expresion
+    (33) expresion -> . expresion ^ expresion
+    (34) expresion -> . expresion > expresion
+    (35) expresion -> . expresion MAYORIGUAL expresion
+    (36) expresion -> . expresion < expresion
+    (37) expresion -> . expresion MENORIGUAL expresion
+    (38) expresion -> . expresion IGUALREL expresion
+    (39) expresion -> . expresion DIFERENTE expresion
+    (40) expresion -> . expresion AND expresion
+    (41) expresion -> . expresion OR expresion
+    (5) asignacion -> . VARIABLE = expresion
+    (6) asignacion -> . INDEFINIDA = expresion
+
+    NUMERO          shift and go to state 29
+    CONSTANTE       shift and go to state 30
+    VARIABLE        shift and go to state 31
+    !               shift and go to state 33
+    -               shift and go to state 34
+    FUNCION         shift and go to state 35
+    INDEFINIDA      shift and go to state 12
+
+    expresion                      shift and go to state 68
+    asignacion                     shift and go to state 32
+
+state 47
+
+    (32) expresion -> expresion % . expresion
+    (21) expresion -> . NUMERO
+    (22) expresion -> . CONSTANTE
+    (23) expresion -> . VARIABLE
+    (24) expresion -> . asignacion
+    (25) expresion -> . ! expresion
+    (26) expresion -> . - expresion
+    (27) expresion -> . FUNCION ( expresion )
+    (28) expresion -> . expresion + expresion
+    (29) expresion -> . expresion - expresion
+    (30) expresion -> . expresion * expresion
+    (31) expresion -> . expresion / expresion
+    (32) expresion -> . expresion % expresion
+    (33) expresion -> . expresion ^ expresion
+    (34) expresion -> . expresion > expresion
+    (35) expresion -> . expresion MAYORIGUAL expresion
+    (36) expresion -> . expresion < expresion
+    (37) expresion -> . expresion MENORIGUAL expresion
+    (38) expresion -> . expresion IGUALREL expresion
+    (39) expresion -> . expresion DIFERENTE expresion
+    (40) expresion -> . expresion AND expresion
+    (41) expresion -> . expresion OR expresion
+    (5) asignacion -> . VARIABLE = expresion
+    (6) asignacion -> . INDEFINIDA = expresion
+
+    NUMERO          shift and go to state 29
+    CONSTANTE       shift and go to state 30
+    VARIABLE        shift and go to state 31
+    !               shift and go to state 33
+    -               shift and go to state 34
+    FUNCION         shift and go to state 35
+    INDEFINIDA      shift and go to state 12
+
+    expresion                      shift and go to state 69
+    asignacion                     shift and go to state 32
+
+state 48
+
+    (33) expresion -> expresion ^ . expresion
+    (21) expresion -> . NUMERO
+    (22) expresion -> . CONSTANTE
+    (23) expresion -> . VARIABLE
+    (24) expresion -> . asignacion
+    (25) expresion -> . ! expresion
+    (26) expresion -> . - expresion
+    (27) expresion -> . FUNCION ( expresion )
+    (28) expresion -> . expresion + expresion
+    (29) expresion -> . expresion - expresion
+    (30) expresion -> . expresion * expresion
+    (31) expresion -> . expresion / expresion
+    (32) expresion -> . expresion % expresion
+    (33) expresion -> . expresion ^ expresion
+    (34) expresion -> . expresion > expresion
+    (35) expresion -> . expresion MAYORIGUAL expresion
+    (36) expresion -> . expresion < expresion
+    (37) expresion -> . expresion MENORIGUAL expresion
+    (38) expresion -> . expresion IGUALREL expresion
+    (39) expresion -> . expresion DIFERENTE expresion
+    (40) expresion -> . expresion AND expresion
+    (41) expresion -> . expresion OR expresion
+    (5) asignacion -> . VARIABLE = expresion
+    (6) asignacion -> . INDEFINIDA = expresion
+
+    NUMERO          shift and go to state 29
+    CONSTANTE       shift and go to state 30
+    VARIABLE        shift and go to state 31
+    !               shift and go to state 33
+    -               shift and go to state 34
+    FUNCION         shift and go to state 35
+    INDEFINIDA      shift and go to state 12
+
+    expresion                      shift and go to state 70
+    asignacion                     shift and go to state 32
+
+state 49
+
+    (34) expresion -> expresion > . expresion
+    (21) expresion -> . NUMERO
+    (22) expresion -> . CONSTANTE
+    (23) expresion -> . VARIABLE
+    (24) expresion -> . asignacion
+    (25) expresion -> . ! expresion
+    (26) expresion -> . - expresion
+    (27) expresion -> . FUNCION ( expresion )
+    (28) expresion -> . expresion + expresion
+    (29) expresion -> . expresion - expresion
+    (30) expresion -> . expresion * expresion
+    (31) expresion -> . expresion / expresion
+    (32) expresion -> . expresion % expresion
+    (33) expresion -> . expresion ^ expresion
+    (34) expresion -> . expresion > expresion
+    (35) expresion -> . expresion MAYORIGUAL expresion
+    (36) expresion -> . expresion < expresion
+    (37) expresion -> . expresion MENORIGUAL expresion
+    (38) expresion -> . expresion IGUALREL expresion
+    (39) expresion -> . expresion DIFERENTE expresion
+    (40) expresion -> . expresion AND expresion
+    (41) expresion -> . expresion OR expresion
+    (5) asignacion -> . VARIABLE = expresion
+    (6) asignacion -> . INDEFINIDA = expresion
+
+    NUMERO          shift and go to state 29
+    CONSTANTE       shift and go to state 30
+    VARIABLE        shift and go to state 31
+    !               shift and go to state 33
+    -               shift and go to state 34
+    FUNCION         shift and go to state 35
+    INDEFINIDA      shift and go to state 12
+
+    expresion                      shift and go to state 71
+    asignacion                     shift and go to state 32
+
+state 50
+
+    (35) expresion -> expresion MAYORIGUAL . expresion
+    (21) expresion -> . NUMERO
+    (22) expresion -> . CONSTANTE
+    (23) expresion -> . VARIABLE
+    (24) expresion -> . asignacion
+    (25) expresion -> . ! expresion
+    (26) expresion -> . - expresion
+    (27) expresion -> . FUNCION ( expresion )
+    (28) expresion -> . expresion + expresion
+    (29) expresion -> . expresion - expresion
+    (30) expresion -> . expresion * expresion
+    (31) expresion -> . expresion / expresion
+    (32) expresion -> . expresion % expresion
+    (33) expresion -> . expresion ^ expresion
+    (34) expresion -> . expresion > expresion
+    (35) expresion -> . expresion MAYORIGUAL expresion
+    (36) expresion -> . expresion < expresion
+    (37) expresion -> . expresion MENORIGUAL expresion
+    (38) expresion -> . expresion IGUALREL expresion
+    (39) expresion -> . expresion DIFERENTE expresion
+    (40) expresion -> . expresion AND expresion
+    (41) expresion -> . expresion OR expresion
+    (5) asignacion -> . VARIABLE = expresion
+    (6) asignacion -> . INDEFINIDA = expresion
+
+    NUMERO          shift and go to state 29
+    CONSTANTE       shift and go to state 30
+    VARIABLE        shift and go to state 31
+    !               shift and go to state 33
+    -               shift and go to state 34
+    FUNCION         shift and go to state 35
+    INDEFINIDA      shift and go to state 12
+
+    expresion                      shift and go to state 72
+    asignacion                     shift and go to state 32
+
+state 51
+
+    (36) expresion -> expresion < . expresion
+    (21) expresion -> . NUMERO
+    (22) expresion -> . CONSTANTE
+    (23) expresion -> . VARIABLE
+    (24) expresion -> . asignacion
+    (25) expresion -> . ! expresion
+    (26) expresion -> . - expresion
+    (27) expresion -> . FUNCION ( expresion )
+    (28) expresion -> . expresion + expresion
+    (29) expresion -> . expresion - expresion
+    (30) expresion -> . expresion * expresion
+    (31) expresion -> . expresion / expresion
+    (32) expresion -> . expresion % expresion
+    (33) expresion -> . expresion ^ expresion
+    (34) expresion -> . expresion > expresion
+    (35) expresion -> . expresion MAYORIGUAL expresion
+    (36) expresion -> . expresion < expresion
+    (37) expresion -> . expresion MENORIGUAL expresion
+    (38) expresion -> . expresion IGUALREL expresion
+    (39) expresion -> . expresion DIFERENTE expresion
+    (40) expresion -> . expresion AND expresion
+    (41) expresion -> . expresion OR expresion
+    (5) asignacion -> . VARIABLE = expresion
+    (6) asignacion -> . INDEFINIDA = expresion
+
+    NUMERO          shift and go to state 29
+    CONSTANTE       shift and go to state 30
+    VARIABLE        shift and go to state 31
+    !               shift and go to state 33
+    -               shift and go to state 34
+    FUNCION         shift and go to state 35
+    INDEFINIDA      shift and go to state 12
+
+    expresion                      shift and go to state 73
+    asignacion                     shift and go to state 32
+
+state 52
+
+    (37) expresion -> expresion MENORIGUAL . expresion
+    (21) expresion -> . NUMERO
+    (22) expresion -> . CONSTANTE
+    (23) expresion -> . VARIABLE
+    (24) expresion -> . asignacion
+    (25) expresion -> . ! expresion
+    (26) expresion -> . - expresion
+    (27) expresion -> . FUNCION ( expresion )
+    (28) expresion -> . expresion + expresion
+    (29) expresion -> . expresion - expresion
+    (30) expresion -> . expresion * expresion
+    (31) expresion -> . expresion / expresion
+    (32) expresion -> . expresion % expresion
+    (33) expresion -> . expresion ^ expresion
+    (34) expresion -> . expresion > expresion
+    (35) expresion -> . expresion MAYORIGUAL expresion
+    (36) expresion -> . expresion < expresion
+    (37) expresion -> . expresion MENORIGUAL expresion
+    (38) expresion -> . expresion IGUALREL expresion
+    (39) expresion -> . expresion DIFERENTE expresion
+    (40) expresion -> . expresion AND expresion
+    (41) expresion -> . expresion OR expresion
+    (5) asignacion -> . VARIABLE = expresion
+    (6) asignacion -> . INDEFINIDA = expresion
+
+    NUMERO          shift and go to state 29
+    CONSTANTE       shift and go to state 30
+    VARIABLE        shift and go to state 31
+    !               shift and go to state 33
+    -               shift and go to state 34
+    FUNCION         shift and go to state 35
+    INDEFINIDA      shift and go to state 12
+
+    expresion                      shift and go to state 74
+    asignacion                     shift and go to state 32
+
+state 53
+
+    (38) expresion -> expresion IGUALREL . expresion
+    (21) expresion -> . NUMERO
+    (22) expresion -> . CONSTANTE
+    (23) expresion -> . VARIABLE
+    (24) expresion -> . asignacion
+    (25) expresion -> . ! expresion
+    (26) expresion -> . - expresion
+    (27) expresion -> . FUNCION ( expresion )
+    (28) expresion -> . expresion + expresion
+    (29) expresion -> . expresion - expresion
+    (30) expresion -> . expresion * expresion
+    (31) expresion -> . expresion / expresion
+    (32) expresion -> . expresion % expresion
+    (33) expresion -> . expresion ^ expresion
+    (34) expresion -> . expresion > expresion
+    (35) expresion -> . expresion MAYORIGUAL expresion
+    (36) expresion -> . expresion < expresion
+    (37) expresion -> . expresion MENORIGUAL expresion
+    (38) expresion -> . expresion IGUALREL expresion
+    (39) expresion -> . expresion DIFERENTE expresion
+    (40) expresion -> . expresion AND expresion
+    (41) expresion -> . expresion OR expresion
+    (5) asignacion -> . VARIABLE = expresion
+    (6) asignacion -> . INDEFINIDA = expresion
+
+    NUMERO          shift and go to state 29
+    CONSTANTE       shift and go to state 30
+    VARIABLE        shift and go to state 31
+    !               shift and go to state 33
+    -               shift and go to state 34
+    FUNCION         shift and go to state 35
+    INDEFINIDA      shift and go to state 12
+
+    expresion                      shift and go to state 75
+    asignacion                     shift and go to state 32
+
+state 54
+
+    (39) expresion -> expresion DIFERENTE . expresion
+    (21) expresion -> . NUMERO
+    (22) expresion -> . CONSTANTE
+    (23) expresion -> . VARIABLE
+    (24) expresion -> . asignacion
+    (25) expresion -> . ! expresion
+    (26) expresion -> . - expresion
+    (27) expresion -> . FUNCION ( expresion )
+    (28) expresion -> . expresion + expresion
+    (29) expresion -> . expresion - expresion
+    (30) expresion -> . expresion * expresion
+    (31) expresion -> . expresion / expresion
+    (32) expresion -> . expresion % expresion
+    (33) expresion -> . expresion ^ expresion
+    (34) expresion -> . expresion > expresion
+    (35) expresion -> . expresion MAYORIGUAL expresion
+    (36) expresion -> . expresion < expresion
+    (37) expresion -> . expresion MENORIGUAL expresion
+    (38) expresion -> . expresion IGUALREL expresion
+    (39) expresion -> . expresion DIFERENTE expresion
+    (40) expresion -> . expresion AND expresion
+    (41) expresion -> . expresion OR expresion
+    (5) asignacion -> . VARIABLE = expresion
+    (6) asignacion -> . INDEFINIDA = expresion
+
+    NUMERO          shift and go to state 29
+    CONSTANTE       shift and go to state 30
+    VARIABLE        shift and go to state 31
+    !               shift and go to state 33
+    -               shift and go to state 34
+    FUNCION         shift and go to state 35
+    INDEFINIDA      shift and go to state 12
+
+    expresion                      shift and go to state 76
+    asignacion                     shift and go to state 32
+
+state 55
+
+    (40) expresion -> expresion AND . expresion
+    (21) expresion -> . NUMERO
+    (22) expresion -> . CONSTANTE
+    (23) expresion -> . VARIABLE
+    (24) expresion -> . asignacion
+    (25) expresion -> . ! expresion
+    (26) expresion -> . - expresion
+    (27) expresion -> . FUNCION ( expresion )
+    (28) expresion -> . expresion + expresion
+    (29) expresion -> . expresion - expresion
+    (30) expresion -> . expresion * expresion
+    (31) expresion -> . expresion / expresion
+    (32) expresion -> . expresion % expresion
+    (33) expresion -> . expresion ^ expresion
+    (34) expresion -> . expresion > expresion
+    (35) expresion -> . expresion MAYORIGUAL expresion
+    (36) expresion -> . expresion < expresion
+    (37) expresion -> . expresion MENORIGUAL expresion
+    (38) expresion -> . expresion IGUALREL expresion
+    (39) expresion -> . expresion DIFERENTE expresion
+    (40) expresion -> . expresion AND expresion
+    (41) expresion -> . expresion OR expresion
+    (5) asignacion -> . VARIABLE = expresion
+    (6) asignacion -> . INDEFINIDA = expresion
+
+    NUMERO          shift and go to state 29
+    CONSTANTE       shift and go to state 30
+    VARIABLE        shift and go to state 31
+    !               shift and go to state 33
+    -               shift and go to state 34
+    FUNCION         shift and go to state 35
+    INDEFINIDA      shift and go to state 12
+
+    expresion                      shift and go to state 77
+    asignacion                     shift and go to state 32
+
+state 56
+
+    (41) expresion -> expresion OR . expresion
+    (21) expresion -> . NUMERO
+    (22) expresion -> . CONSTANTE
+    (23) expresion -> . VARIABLE
+    (24) expresion -> . asignacion
+    (25) expresion -> . ! expresion
+    (26) expresion -> . - expresion
+    (27) expresion -> . FUNCION ( expresion )
+    (28) expresion -> . expresion + expresion
+    (29) expresion -> . expresion - expresion
+    (30) expresion -> . expresion * expresion
+    (31) expresion -> . expresion / expresion
+    (32) expresion -> . expresion % expresion
+    (33) expresion -> . expresion ^ expresion
+    (34) expresion -> . expresion > expresion
+    (35) expresion -> . expresion MAYORIGUAL expresion
+    (36) expresion -> . expresion < expresion
+    (37) expresion -> . expresion MENORIGUAL expresion
+    (38) expresion -> . expresion IGUALREL expresion
+    (39) expresion -> . expresion DIFERENTE expresion
+    (40) expresion -> . expresion AND expresion
+    (41) expresion -> . expresion OR expresion
+    (5) asignacion -> . VARIABLE = expresion
+    (6) asignacion -> . INDEFINIDA = expresion
+
+    NUMERO          shift and go to state 29
+    CONSTANTE       shift and go to state 30
+    VARIABLE        shift and go to state 31
+    !               shift and go to state 33
+    -               shift and go to state 34
+    FUNCION         shift and go to state 35
+    INDEFINIDA      shift and go to state 12
+
+    expresion                      shift and go to state 78
+    asignacion                     shift and go to state 32
+
+state 57
+
+    (25) expresion -> ! expresion .
+    (28) expresion -> expresion . + expresion
+    (29) expresion -> expresion . - expresion
+    (30) expresion -> expresion . * expresion
+    (31) expresion -> expresion . / expresion
+    (32) expresion -> expresion . % expresion
+    (33) expresion -> expresion . ^ expresion
+    (34) expresion -> expresion . > expresion
+    (35) expresion -> expresion . MAYORIGUAL expresion
+    (36) expresion -> expresion . < expresion
+    (37) expresion -> expresion . MENORIGUAL expresion
+    (38) expresion -> expresion . IGUALREL expresion
+    (39) expresion -> expresion . DIFERENTE expresion
+    (40) expresion -> expresion . AND expresion
+    (41) expresion -> expresion . OR expresion
+
+    )               reduce using rule 25 (expresion -> ! expresion .)
+    +               reduce using rule 25 (expresion -> ! expresion .)
+    -               reduce using rule 25 (expresion -> ! expresion .)
+    *               reduce using rule 25 (expresion -> ! expresion .)
+    /               reduce using rule 25 (expresion -> ! expresion .)
+    %               reduce using rule 25 (expresion -> ! expresion .)
+    >               reduce using rule 25 (expresion -> ! expresion .)
+    MAYORIGUAL      reduce using rule 25 (expresion -> ! expresion .)
+    <               reduce using rule 25 (expresion -> ! expresion .)
+    MENORIGUAL      reduce using rule 25 (expresion -> ! expresion .)
+    IGUALREL        reduce using rule 25 (expresion -> ! expresion .)
+    DIFERENTE       reduce using rule 25 (expresion -> ! expresion .)
+    AND             reduce using rule 25 (expresion -> ! expresion .)
+    OR              reduce using rule 25 (expresion -> ! expresion .)
+    ;               reduce using rule 25 (expresion -> ! expresion .)
+    (               reduce using rule 25 (expresion -> ! expresion .)
+    ^               shift and go to state 48
+
+  ! ^               [ reduce using rule 25 (expresion -> ! expresion .) ]
+  ! +               [ shift and go to state 43 ]
+  ! -               [ shift and go to state 44 ]
+  ! *               [ shift and go to state 45 ]
+  ! /               [ shift and go to state 46 ]
+  ! %               [ shift and go to state 47 ]
+  ! >               [ shift and go to state 49 ]
+  ! MAYORIGUAL      [ shift and go to state 50 ]
+  ! <               [ shift and go to state 51 ]
+  ! MENORIGUAL      [ shift and go to state 52 ]
+  ! IGUALREL        [ shift and go to state 53 ]
+  ! DIFERENTE       [ shift and go to state 54 ]
+  ! AND             [ shift and go to state 55 ]
+  ! OR              [ shift and go to state 56 ]
+
+
+state 58
+
+    (26) expresion -> - expresion .
+    (28) expresion -> expresion . + expresion
+    (29) expresion -> expresion . - expresion
+    (30) expresion -> expresion . * expresion
+    (31) expresion -> expresion . / expresion
+    (32) expresion -> expresion . % expresion
+    (33) expresion -> expresion . ^ expresion
+    (34) expresion -> expresion . > expresion
+    (35) expresion -> expresion . MAYORIGUAL expresion
+    (36) expresion -> expresion . < expresion
+    (37) expresion -> expresion . MENORIGUAL expresion
+    (38) expresion -> expresion . IGUALREL expresion
+    (39) expresion -> expresion . DIFERENTE expresion
+    (40) expresion -> expresion . AND expresion
+    (41) expresion -> expresion . OR expresion
+
+    )               reduce using rule 26 (expresion -> - expresion .)
+    +               reduce using rule 26 (expresion -> - expresion .)
+    -               reduce using rule 26 (expresion -> - expresion .)
+    *               reduce using rule 26 (expresion -> - expresion .)
+    /               reduce using rule 26 (expresion -> - expresion .)
+    %               reduce using rule 26 (expresion -> - expresion .)
+    >               reduce using rule 26 (expresion -> - expresion .)
+    MAYORIGUAL      reduce using rule 26 (expresion -> - expresion .)
+    <               reduce using rule 26 (expresion -> - expresion .)
+    MENORIGUAL      reduce using rule 26 (expresion -> - expresion .)
+    IGUALREL        reduce using rule 26 (expresion -> - expresion .)
+    DIFERENTE       reduce using rule 26 (expresion -> - expresion .)
+    AND             reduce using rule 26 (expresion -> - expresion .)
+    OR              reduce using rule 26 (expresion -> - expresion .)
+    ;               reduce using rule 26 (expresion -> - expresion .)
+    (               reduce using rule 26 (expresion -> - expresion .)
+    ^               shift and go to state 48
+
+  ! ^               [ reduce using rule 26 (expresion -> - expresion .) ]
+  ! +               [ shift and go to state 43 ]
+  ! -               [ shift and go to state 44 ]
+  ! *               [ shift and go to state 45 ]
+  ! /               [ shift and go to state 46 ]
+  ! %               [ shift and go to state 47 ]
+  ! >               [ shift and go to state 49 ]
+  ! MAYORIGUAL      [ shift and go to state 50 ]
+  ! <               [ shift and go to state 51 ]
+  ! MENORIGUAL      [ shift and go to state 52 ]
+  ! IGUALREL        [ shift and go to state 53 ]
+  ! DIFERENTE       [ shift and go to state 54 ]
+  ! AND             [ shift and go to state 55 ]
+  ! OR              [ shift and go to state 56 ]
+
+
+state 59
+
+    (27) expresion -> FUNCION ( . expresion )
+    (21) expresion -> . NUMERO
+    (22) expresion -> . CONSTANTE
+    (23) expresion -> . VARIABLE
+    (24) expresion -> . asignacion
+    (25) expresion -> . ! expresion
+    (26) expresion -> . - expresion
+    (27) expresion -> . FUNCION ( expresion )
+    (28) expresion -> . expresion + expresion
+    (29) expresion -> . expresion - expresion
+    (30) expresion -> . expresion * expresion
+    (31) expresion -> . expresion / expresion
+    (32) expresion -> . expresion % expresion
+    (33) expresion -> . expresion ^ expresion
+    (34) expresion -> . expresion > expresion
+    (35) expresion -> . expresion MAYORIGUAL expresion
+    (36) expresion -> . expresion < expresion
+    (37) expresion -> . expresion MENORIGUAL expresion
+    (38) expresion -> . expresion IGUALREL expresion
+    (39) expresion -> . expresion DIFERENTE expresion
+    (40) expresion -> . expresion AND expresion
+    (41) expresion -> . expresion OR expresion
+    (5) asignacion -> . VARIABLE = expresion
+    (6) asignacion -> . INDEFINIDA = expresion
+
+    NUMERO          shift and go to state 29
+    CONSTANTE       shift and go to state 30
+    VARIABLE        shift and go to state 31
+    !               shift and go to state 33
+    -               shift and go to state 34
+    FUNCION         shift and go to state 35
+    INDEFINIDA      shift and go to state 12
+
+    expresion                      shift and go to state 79
+    asignacion                     shift and go to state 32
+
+state 60
+
+    (10) sentencia -> while condicion sentencia termino .
+
+    ;               reduce using rule 10 (sentencia -> while condicion sentencia termino .)
+    error           reduce using rule 10 (sentencia -> while condicion sentencia termino .)
+    {               reduce using rule 10 (sentencia -> while condicion sentencia termino .)
+    PRINT           reduce using rule 10 (sentencia -> while condicion sentencia termino .)
+    VARIABLE        reduce using rule 10 (sentencia -> while condicion sentencia termino .)
+    INDEFINIDA      reduce using rule 10 (sentencia -> while condicion sentencia termino .)
+    WHILE           reduce using rule 10 (sentencia -> while condicion sentencia termino .)
+    IF              reduce using rule 10 (sentencia -> while condicion sentencia termino .)
+    FOR             reduce using rule 10 (sentencia -> while condicion sentencia termino .)
+    $end            reduce using rule 10 (sentencia -> while condicion sentencia termino .)
+    }               reduce using rule 10 (sentencia -> while condicion sentencia termino .)
+    ELSE            reduce using rule 10 (sentencia -> while condicion sentencia termino .)
+
+
+state 61
+
+    (14) condicion -> ( expresion ) .
+
+    {               reduce using rule 14 (condicion -> ( expresion ) .)
+    PRINT           reduce using rule 14 (condicion -> ( expresion ) .)
+    VARIABLE        reduce using rule 14 (condicion -> ( expresion ) .)
+    INDEFINIDA      reduce using rule 14 (condicion -> ( expresion ) .)
+    WHILE           reduce using rule 14 (condicion -> ( expresion ) .)
+    IF              reduce using rule 14 (condicion -> ( expresion ) .)
+    FOR             reduce using rule 14 (condicion -> ( expresion ) .)
+
+
+state 62
+
+    (11) sentencia -> if condicion sentencia termino .
+    (12) sentencia -> if condicion sentencia termino . ELSE sentencia termino
+
+  ! shift/reduce conflict for ELSE resolved as shift
+    ;               reduce using rule 11 (sentencia -> if condicion sentencia termino .)
+    error           reduce using rule 11 (sentencia -> if condicion sentencia termino .)
+    {               reduce using rule 11 (sentencia -> if condicion sentencia termino .)
+    PRINT           reduce using rule 11 (sentencia -> if condicion sentencia termino .)
+    VARIABLE        reduce using rule 11 (sentencia -> if condicion sentencia termino .)
+    INDEFINIDA      reduce using rule 11 (sentencia -> if condicion sentencia termino .)
+    WHILE           reduce using rule 11 (sentencia -> if condicion sentencia termino .)
+    IF              reduce using rule 11 (sentencia -> if condicion sentencia termino .)
+    FOR             reduce using rule 11 (sentencia -> if condicion sentencia termino .)
+    $end            reduce using rule 11 (sentencia -> if condicion sentencia termino .)
+    }               reduce using rule 11 (sentencia -> if condicion sentencia termino .)
+    ELSE            shift and go to state 80
+
+  ! ELSE            [ reduce using rule 11 (sentencia -> if condicion sentencia termino .) ]
+
+
+state 63
+
+    (13) sentencia -> for asignacion condicion sentencia . termino
+    (42) termino -> .
+
+    ;               reduce using rule 42 (termino -> .)
+    error           reduce using rule 42 (termino -> .)
+    {               reduce using rule 42 (termino -> .)
+    PRINT           reduce using rule 42 (termino -> .)
+    VARIABLE        reduce using rule 42 (termino -> .)
+    INDEFINIDA      reduce using rule 42 (termino -> .)
+    WHILE           reduce using rule 42 (termino -> .)
+    IF              reduce using rule 42 (termino -> .)
+    FOR             reduce using rule 42 (termino -> .)
+    $end            reduce using rule 42 (termino -> .)
+    }               reduce using rule 42 (termino -> .)
+    ELSE            reduce using rule 42 (termino -> .)
+
+    termino                        shift and go to state 81
+
+state 64
+
+    (9) sentencia -> PRINT ( expresion ) ; .
+
+    ;               reduce using rule 9 (sentencia -> PRINT ( expresion ) ; .)
+    error           reduce using rule 9 (sentencia -> PRINT ( expresion ) ; .)
+    {               reduce using rule 9 (sentencia -> PRINT ( expresion ) ; .)
+    PRINT           reduce using rule 9 (sentencia -> PRINT ( expresion ) ; .)
+    VARIABLE        reduce using rule 9 (sentencia -> PRINT ( expresion ) ; .)
+    INDEFINIDA      reduce using rule 9 (sentencia -> PRINT ( expresion ) ; .)
+    WHILE           reduce using rule 9 (sentencia -> PRINT ( expresion ) ; .)
+    IF              reduce using rule 9 (sentencia -> PRINT ( expresion ) ; .)
+    FOR             reduce using rule 9 (sentencia -> PRINT ( expresion ) ; .)
+    $end            reduce using rule 9 (sentencia -> PRINT ( expresion ) ; .)
+    }               reduce using rule 9 (sentencia -> PRINT ( expresion ) ; .)
+    ELSE            reduce using rule 9 (sentencia -> PRINT ( expresion ) ; .)
+
+
+state 65
+
+    (28) expresion -> expresion + expresion .
+    (28) expresion -> expresion . + expresion
+    (29) expresion -> expresion . - expresion
+    (30) expresion -> expresion . * expresion
+    (31) expresion -> expresion . / expresion
+    (32) expresion -> expresion . % expresion
+    (33) expresion -> expresion . ^ expresion
+    (34) expresion -> expresion . > expresion
+    (35) expresion -> expresion . MAYORIGUAL expresion
+    (36) expresion -> expresion . < expresion
+    (37) expresion -> expresion . MENORIGUAL expresion
+    (38) expresion -> expresion . IGUALREL expresion
+    (39) expresion -> expresion . DIFERENTE expresion
+    (40) expresion -> expresion . AND expresion
+    (41) expresion -> expresion . OR expresion
+
+    )               reduce using rule 28 (expresion -> expresion + expresion .)
+    +               reduce using rule 28 (expresion -> expresion + expresion .)
+    -               reduce using rule 28 (expresion -> expresion + expresion .)
+    >               reduce using rule 28 (expresion -> expresion + expresion .)
+    MAYORIGUAL      reduce using rule 28 (expresion -> expresion + expresion .)
+    <               reduce using rule 28 (expresion -> expresion + expresion .)
+    MENORIGUAL      reduce using rule 28 (expresion -> expresion + expresion .)
+    IGUALREL        reduce using rule 28 (expresion -> expresion + expresion .)
+    DIFERENTE       reduce using rule 28 (expresion -> expresion + expresion .)
+    AND             reduce using rule 28 (expresion -> expresion + expresion .)
+    OR              reduce using rule 28 (expresion -> expresion + expresion .)
+    ;               reduce using rule 28 (expresion -> expresion + expresion .)
+    (               reduce using rule 28 (expresion -> expresion + expresion .)
+    *               shift and go to state 45
+    /               shift and go to state 46
+    %               shift and go to state 47
+    ^               shift and go to state 48
+
+  ! *               [ reduce using rule 28 (expresion -> expresion + expresion .) ]
+  ! /               [ reduce using rule 28 (expresion -> expresion + expresion .) ]
+  ! %               [ reduce using rule 28 (expresion -> expresion + expresion .) ]
+  ! ^               [ reduce using rule 28 (expresion -> expresion + expresion .) ]
+  ! +               [ shift and go to state 43 ]
+  ! -               [ shift and go to state 44 ]
+  ! >               [ shift and go to state 49 ]
+  ! MAYORIGUAL      [ shift and go to state 50 ]
+  ! <               [ shift and go to state 51 ]
+  ! MENORIGUAL      [ shift and go to state 52 ]
+  ! IGUALREL        [ shift and go to state 53 ]
+  ! DIFERENTE       [ shift and go to state 54 ]
+  ! AND             [ shift and go to state 55 ]
+  ! OR              [ shift and go to state 56 ]
+
+
+state 66
+
+    (29) expresion -> expresion - expresion .
+    (28) expresion -> expresion . + expresion
+    (29) expresion -> expresion . - expresion
+    (30) expresion -> expresion . * expresion
+    (31) expresion -> expresion . / expresion
+    (32) expresion -> expresion . % expresion
+    (33) expresion -> expresion . ^ expresion
+    (34) expresion -> expresion . > expresion
+    (35) expresion -> expresion . MAYORIGUAL expresion
+    (36) expresion -> expresion . < expresion
+    (37) expresion -> expresion . MENORIGUAL expresion
+    (38) expresion -> expresion . IGUALREL expresion
+    (39) expresion -> expresion . DIFERENTE expresion
+    (40) expresion -> expresion . AND expresion
+    (41) expresion -> expresion . OR expresion
+
+    )               reduce using rule 29 (expresion -> expresion - expresion .)
+    +               reduce using rule 29 (expresion -> expresion - expresion .)
+    -               reduce using rule 29 (expresion -> expresion - expresion .)
+    >               reduce using rule 29 (expresion -> expresion - expresion .)
+    MAYORIGUAL      reduce using rule 29 (expresion -> expresion - expresion .)
+    <               reduce using rule 29 (expresion -> expresion - expresion .)
+    MENORIGUAL      reduce using rule 29 (expresion -> expresion - expresion .)
+    IGUALREL        reduce using rule 29 (expresion -> expresion - expresion .)
+    DIFERENTE       reduce using rule 29 (expresion -> expresion - expresion .)
+    AND             reduce using rule 29 (expresion -> expresion - expresion .)
+    OR              reduce using rule 29 (expresion -> expresion - expresion .)
+    ;               reduce using rule 29 (expresion -> expresion - expresion .)
+    (               reduce using rule 29 (expresion -> expresion - expresion .)
+    *               shift and go to state 45
+    /               shift and go to state 46
+    %               shift and go to state 47
+    ^               shift and go to state 48
+
+  ! *               [ reduce using rule 29 (expresion -> expresion - expresion .) ]
+  ! /               [ reduce using rule 29 (expresion -> expresion - expresion .) ]
+  ! %               [ reduce using rule 29 (expresion -> expresion - expresion .) ]
+  ! ^               [ reduce using rule 29 (expresion -> expresion - expresion .) ]
+  ! +               [ shift and go to state 43 ]
+  ! -               [ shift and go to state 44 ]
+  ! >               [ shift and go to state 49 ]
+  ! MAYORIGUAL      [ shift and go to state 50 ]
+  ! <               [ shift and go to state 51 ]
+  ! MENORIGUAL      [ shift and go to state 52 ]
+  ! IGUALREL        [ shift and go to state 53 ]
+  ! DIFERENTE       [ shift and go to state 54 ]
+  ! AND             [ shift and go to state 55 ]
+  ! OR              [ shift and go to state 56 ]
+
+
+state 67
+
+    (30) expresion -> expresion * expresion .
+    (28) expresion -> expresion . + expresion
+    (29) expresion -> expresion . - expresion
+    (30) expresion -> expresion . * expresion
+    (31) expresion -> expresion . / expresion
+    (32) expresion -> expresion . % expresion
+    (33) expresion -> expresion . ^ expresion
+    (34) expresion -> expresion . > expresion
+    (35) expresion -> expresion . MAYORIGUAL expresion
+    (36) expresion -> expresion . < expresion
+    (37) expresion -> expresion . MENORIGUAL expresion
+    (38) expresion -> expresion . IGUALREL expresion
+    (39) expresion -> expresion . DIFERENTE expresion
+    (40) expresion -> expresion . AND expresion
+    (41) expresion -> expresion . OR expresion
+
+    )               reduce using rule 30 (expresion -> expresion * expresion .)
+    +               reduce using rule 30 (expresion -> expresion * expresion .)
+    -               reduce using rule 30 (expresion -> expresion * expresion .)
+    *               reduce using rule 30 (expresion -> expresion * expresion .)
+    /               reduce using rule 30 (expresion -> expresion * expresion .)
+    %               reduce using rule 30 (expresion -> expresion * expresion .)
+    >               reduce using rule 30 (expresion -> expresion * expresion .)
+    MAYORIGUAL      reduce using rule 30 (expresion -> expresion * expresion .)
+    <               reduce using rule 30 (expresion -> expresion * expresion .)
+    MENORIGUAL      reduce using rule 30 (expresion -> expresion * expresion .)
+    IGUALREL        reduce using rule 30 (expresion -> expresion * expresion .)
+    DIFERENTE       reduce using rule 30 (expresion -> expresion * expresion .)
+    AND             reduce using rule 30 (expresion -> expresion * expresion .)
+    OR              reduce using rule 30 (expresion -> expresion * expresion .)
+    ;               reduce using rule 30 (expresion -> expresion * expresion .)
+    (               reduce using rule 30 (expresion -> expresion * expresion .)
+    ^               shift and go to state 48
+
+  ! ^               [ reduce using rule 30 (expresion -> expresion * expresion .) ]
+  ! +               [ shift and go to state 43 ]
+  ! -               [ shift and go to state 44 ]
+  ! *               [ shift and go to state 45 ]
+  ! /               [ shift and go to state 46 ]
+  ! %               [ shift and go to state 47 ]
+  ! >               [ shift and go to state 49 ]
+  ! MAYORIGUAL      [ shift and go to state 50 ]
+  ! <               [ shift and go to state 51 ]
+  ! MENORIGUAL      [ shift and go to state 52 ]
+  ! IGUALREL        [ shift and go to state 53 ]
+  ! DIFERENTE       [ shift and go to state 54 ]
+  ! AND             [ shift and go to state 55 ]
+  ! OR              [ shift and go to state 56 ]
+
+
+state 68
+
+    (31) expresion -> expresion / expresion .
+    (28) expresion -> expresion . + expresion
+    (29) expresion -> expresion . - expresion
+    (30) expresion -> expresion . * expresion
+    (31) expresion -> expresion . / expresion
+    (32) expresion -> expresion . % expresion
+    (33) expresion -> expresion . ^ expresion
+    (34) expresion -> expresion . > expresion
+    (35) expresion -> expresion . MAYORIGUAL expresion
+    (36) expresion -> expresion . < expresion
+    (37) expresion -> expresion . MENORIGUAL expresion
+    (38) expresion -> expresion . IGUALREL expresion
+    (39) expresion -> expresion . DIFERENTE expresion
+    (40) expresion -> expresion . AND expresion
+    (41) expresion -> expresion . OR expresion
+
+    )               reduce using rule 31 (expresion -> expresion / expresion .)
+    +               reduce using rule 31 (expresion -> expresion / expresion .)
+    -               reduce using rule 31 (expresion -> expresion / expresion .)
+    *               reduce using rule 31 (expresion -> expresion / expresion .)
+    /               reduce using rule 31 (expresion -> expresion / expresion .)
+    %               reduce using rule 31 (expresion -> expresion / expresion .)
+    >               reduce using rule 31 (expresion -> expresion / expresion .)
+    MAYORIGUAL      reduce using rule 31 (expresion -> expresion / expresion .)
+    <               reduce using rule 31 (expresion -> expresion / expresion .)
+    MENORIGUAL      reduce using rule 31 (expresion -> expresion / expresion .)
+    IGUALREL        reduce using rule 31 (expresion -> expresion / expresion .)
+    DIFERENTE       reduce using rule 31 (expresion -> expresion / expresion .)
+    AND             reduce using rule 31 (expresion -> expresion / expresion .)
+    OR              reduce using rule 31 (expresion -> expresion / expresion .)
+    ;               reduce using rule 31 (expresion -> expresion / expresion .)
+    (               reduce using rule 31 (expresion -> expresion / expresion .)
+    ^               shift and go to state 48
+
+  ! ^               [ reduce using rule 31 (expresion -> expresion / expresion .) ]
+  ! +               [ shift and go to state 43 ]
+  ! -               [ shift and go to state 44 ]
+  ! *               [ shift and go to state 45 ]
+  ! /               [ shift and go to state 46 ]
+  ! %               [ shift and go to state 47 ]
+  ! >               [ shift and go to state 49 ]
+  ! MAYORIGUAL      [ shift and go to state 50 ]
+  ! <               [ shift and go to state 51 ]
+  ! MENORIGUAL      [ shift and go to state 52 ]
+  ! IGUALREL        [ shift and go to state 53 ]
+  ! DIFERENTE       [ shift and go to state 54 ]
+  ! AND             [ shift and go to state 55 ]
+  ! OR              [ shift and go to state 56 ]
+
+
+state 69
+
+    (32) expresion -> expresion % expresion .
+    (28) expresion -> expresion . + expresion
+    (29) expresion -> expresion . - expresion
+    (30) expresion -> expresion . * expresion
+    (31) expresion -> expresion . / expresion
+    (32) expresion -> expresion . % expresion
+    (33) expresion -> expresion . ^ expresion
+    (34) expresion -> expresion . > expresion
+    (35) expresion -> expresion . MAYORIGUAL expresion
+    (36) expresion -> expresion . < expresion
+    (37) expresion -> expresion . MENORIGUAL expresion
+    (38) expresion -> expresion . IGUALREL expresion
+    (39) expresion -> expresion . DIFERENTE expresion
+    (40) expresion -> expresion . AND expresion
+    (41) expresion -> expresion . OR expresion
+
+    )               reduce using rule 32 (expresion -> expresion % expresion .)
+    +               reduce using rule 32 (expresion -> expresion % expresion .)
+    -               reduce using rule 32 (expresion -> expresion % expresion .)
+    *               reduce using rule 32 (expresion -> expresion % expresion .)
+    /               reduce using rule 32 (expresion -> expresion % expresion .)
+    %               reduce using rule 32 (expresion -> expresion % expresion .)
+    >               reduce using rule 32 (expresion -> expresion % expresion .)
+    MAYORIGUAL      reduce using rule 32 (expresion -> expresion % expresion .)
+    <               reduce using rule 32 (expresion -> expresion % expresion .)
+    MENORIGUAL      reduce using rule 32 (expresion -> expresion % expresion .)
+    IGUALREL        reduce using rule 32 (expresion -> expresion % expresion .)
+    DIFERENTE       reduce using rule 32 (expresion -> expresion % expresion .)
+    AND             reduce using rule 32 (expresion -> expresion % expresion .)
+    OR              reduce using rule 32 (expresion -> expresion % expresion .)
+    ;               reduce using rule 32 (expresion -> expresion % expresion .)
+    (               reduce using rule 32 (expresion -> expresion % expresion .)
+    ^               shift and go to state 48
+
+  ! ^               [ reduce using rule 32 (expresion -> expresion % expresion .) ]
+  ! +               [ shift and go to state 43 ]
+  ! -               [ shift and go to state 44 ]
+  ! *               [ shift and go to state 45 ]
+  ! /               [ shift and go to state 46 ]
+  ! %               [ shift and go to state 47 ]
+  ! >               [ shift and go to state 49 ]
+  ! MAYORIGUAL      [ shift and go to state 50 ]
+  ! <               [ shift and go to state 51 ]
+  ! MENORIGUAL      [ shift and go to state 52 ]
+  ! IGUALREL        [ shift and go to state 53 ]
+  ! DIFERENTE       [ shift and go to state 54 ]
+  ! AND             [ shift and go to state 55 ]
+  ! OR              [ shift and go to state 56 ]
+
+
+state 70
+
+    (33) expresion -> expresion ^ expresion .
+    (28) expresion -> expresion . + expresion
+    (29) expresion -> expresion . - expresion
+    (30) expresion -> expresion . * expresion
+    (31) expresion -> expresion . / expresion
+    (32) expresion -> expresion . % expresion
+    (33) expresion -> expresion . ^ expresion
+    (34) expresion -> expresion . > expresion
+    (35) expresion -> expresion . MAYORIGUAL expresion
+    (36) expresion -> expresion . < expresion
+    (37) expresion -> expresion . MENORIGUAL expresion
+    (38) expresion -> expresion . IGUALREL expresion
+    (39) expresion -> expresion . DIFERENTE expresion
+    (40) expresion -> expresion . AND expresion
+    (41) expresion -> expresion . OR expresion
+
+    )               reduce using rule 33 (expresion -> expresion ^ expresion .)
+    +               reduce using rule 33 (expresion -> expresion ^ expresion .)
+    -               reduce using rule 33 (expresion -> expresion ^ expresion .)
+    *               reduce using rule 33 (expresion -> expresion ^ expresion .)
+    /               reduce using rule 33 (expresion -> expresion ^ expresion .)
+    %               reduce using rule 33 (expresion -> expresion ^ expresion .)
+    >               reduce using rule 33 (expresion -> expresion ^ expresion .)
+    MAYORIGUAL      reduce using rule 33 (expresion -> expresion ^ expresion .)
+    <               reduce using rule 33 (expresion -> expresion ^ expresion .)
+    MENORIGUAL      reduce using rule 33 (expresion -> expresion ^ expresion .)
+    IGUALREL        reduce using rule 33 (expresion -> expresion ^ expresion .)
+    DIFERENTE       reduce using rule 33 (expresion -> expresion ^ expresion .)
+    AND             reduce using rule 33 (expresion -> expresion ^ expresion .)
+    OR              reduce using rule 33 (expresion -> expresion ^ expresion .)
+    ;               reduce using rule 33 (expresion -> expresion ^ expresion .)
+    (               reduce using rule 33 (expresion -> expresion ^ expresion .)
+    ^               shift and go to state 48
+
+  ! ^               [ reduce using rule 33 (expresion -> expresion ^ expresion .) ]
+  ! +               [ shift and go to state 43 ]
+  ! -               [ shift and go to state 44 ]
+  ! *               [ shift and go to state 45 ]
+  ! /               [ shift and go to state 46 ]
+  ! %               [ shift and go to state 47 ]
+  ! >               [ shift and go to state 49 ]
+  ! MAYORIGUAL      [ shift and go to state 50 ]
+  ! <               [ shift and go to state 51 ]
+  ! MENORIGUAL      [ shift and go to state 52 ]
+  ! IGUALREL        [ shift and go to state 53 ]
+  ! DIFERENTE       [ shift and go to state 54 ]
+  ! AND             [ shift and go to state 55 ]
+  ! OR              [ shift and go to state 56 ]
+
+
+state 71
+
+    (34) expresion -> expresion > expresion .
+    (28) expresion -> expresion . + expresion
+    (29) expresion -> expresion . - expresion
+    (30) expresion -> expresion . * expresion
+    (31) expresion -> expresion . / expresion
+    (32) expresion -> expresion . % expresion
+    (33) expresion -> expresion . ^ expresion
+    (34) expresion -> expresion . > expresion
+    (35) expresion -> expresion . MAYORIGUAL expresion
+    (36) expresion -> expresion . < expresion
+    (37) expresion -> expresion . MENORIGUAL expresion
+    (38) expresion -> expresion . IGUALREL expresion
+    (39) expresion -> expresion . DIFERENTE expresion
+    (40) expresion -> expresion . AND expresion
+    (41) expresion -> expresion . OR expresion
+
+    )               reduce using rule 34 (expresion -> expresion > expresion .)
+    >               reduce using rule 34 (expresion -> expresion > expresion .)
+    MAYORIGUAL      reduce using rule 34 (expresion -> expresion > expresion .)
+    <               reduce using rule 34 (expresion -> expresion > expresion .)
+    MENORIGUAL      reduce using rule 34 (expresion -> expresion > expresion .)
+    IGUALREL        reduce using rule 34 (expresion -> expresion > expresion .)
+    DIFERENTE       reduce using rule 34 (expresion -> expresion > expresion .)
+    AND             reduce using rule 34 (expresion -> expresion > expresion .)
+    OR              reduce using rule 34 (expresion -> expresion > expresion .)
+    ;               reduce using rule 34 (expresion -> expresion > expresion .)
+    (               reduce using rule 34 (expresion -> expresion > expresion .)
+    +               shift and go to state 43
+    -               shift and go to state 44
+    *               shift and go to state 45
+    /               shift and go to state 46
+    %               shift and go to state 47
+    ^               shift and go to state 48
+
+  ! +               [ reduce using rule 34 (expresion -> expresion > expresion .) ]
+  ! -               [ reduce using rule 34 (expresion -> expresion > expresion .) ]
+  ! *               [ reduce using rule 34 (expresion -> expresion > expresion .) ]
+  ! /               [ reduce using rule 34 (expresion -> expresion > expresion .) ]
+  ! %               [ reduce using rule 34 (expresion -> expresion > expresion .) ]
+  ! ^               [ reduce using rule 34 (expresion -> expresion > expresion .) ]
+  ! >               [ shift and go to state 49 ]
+  ! MAYORIGUAL      [ shift and go to state 50 ]
+  ! <               [ shift and go to state 51 ]
+  ! MENORIGUAL      [ shift and go to state 52 ]
+  ! IGUALREL        [ shift and go to state 53 ]
+  ! DIFERENTE       [ shift and go to state 54 ]
+  ! AND             [ shift and go to state 55 ]
+  ! OR              [ shift and go to state 56 ]
+
+
+state 72
+
+    (35) expresion -> expresion MAYORIGUAL expresion .
+    (28) expresion -> expresion . + expresion
+    (29) expresion -> expresion . - expresion
+    (30) expresion -> expresion . * expresion
+    (31) expresion -> expresion . / expresion
+    (32) expresion -> expresion . % expresion
+    (33) expresion -> expresion . ^ expresion
+    (34) expresion -> expresion . > expresion
+    (35) expresion -> expresion . MAYORIGUAL expresion
+    (36) expresion -> expresion . < expresion
+    (37) expresion -> expresion . MENORIGUAL expresion
+    (38) expresion -> expresion . IGUALREL expresion
+    (39) expresion -> expresion . DIFERENTE expresion
+    (40) expresion -> expresion . AND expresion
+    (41) expresion -> expresion . OR expresion
+
+    )               reduce using rule 35 (expresion -> expresion MAYORIGUAL expresion .)
+    >               reduce using rule 35 (expresion -> expresion MAYORIGUAL expresion .)
+    MAYORIGUAL      reduce using rule 35 (expresion -> expresion MAYORIGUAL expresion .)
+    <               reduce using rule 35 (expresion -> expresion MAYORIGUAL expresion .)
+    MENORIGUAL      reduce using rule 35 (expresion -> expresion MAYORIGUAL expresion .)
+    IGUALREL        reduce using rule 35 (expresion -> expresion MAYORIGUAL expresion .)
+    DIFERENTE       reduce using rule 35 (expresion -> expresion MAYORIGUAL expresion .)
+    AND             reduce using rule 35 (expresion -> expresion MAYORIGUAL expresion .)
+    OR              reduce using rule 35 (expresion -> expresion MAYORIGUAL expresion .)
+    ;               reduce using rule 35 (expresion -> expresion MAYORIGUAL expresion .)
+    (               reduce using rule 35 (expresion -> expresion MAYORIGUAL expresion .)
+    +               shift and go to state 43
+    -               shift and go to state 44
+    *               shift and go to state 45
+    /               shift and go to state 46
+    %               shift and go to state 47
+    ^               shift and go to state 48
+
+  ! +               [ reduce using rule 35 (expresion -> expresion MAYORIGUAL expresion .) ]
+  ! -               [ reduce using rule 35 (expresion -> expresion MAYORIGUAL expresion .) ]
+  ! *               [ reduce using rule 35 (expresion -> expresion MAYORIGUAL expresion .) ]
+  ! /               [ reduce using rule 35 (expresion -> expresion MAYORIGUAL expresion .) ]
+  ! %               [ reduce using rule 35 (expresion -> expresion MAYORIGUAL expresion .) ]
+  ! ^               [ reduce using rule 35 (expresion -> expresion MAYORIGUAL expresion .) ]
+  ! >               [ shift and go to state 49 ]
+  ! MAYORIGUAL      [ shift and go to state 50 ]
+  ! <               [ shift and go to state 51 ]
+  ! MENORIGUAL      [ shift and go to state 52 ]
+  ! IGUALREL        [ shift and go to state 53 ]
+  ! DIFERENTE       [ shift and go to state 54 ]
+  ! AND             [ shift and go to state 55 ]
+  ! OR              [ shift and go to state 56 ]
+
+
+state 73
+
+    (36) expresion -> expresion < expresion .
+    (28) expresion -> expresion . + expresion
+    (29) expresion -> expresion . - expresion
+    (30) expresion -> expresion . * expresion
+    (31) expresion -> expresion . / expresion
+    (32) expresion -> expresion . % expresion
+    (33) expresion -> expresion . ^ expresion
+    (34) expresion -> expresion . > expresion
+    (35) expresion -> expresion . MAYORIGUAL expresion
+    (36) expresion -> expresion . < expresion
+    (37) expresion -> expresion . MENORIGUAL expresion
+    (38) expresion -> expresion . IGUALREL expresion
+    (39) expresion -> expresion . DIFERENTE expresion
+    (40) expresion -> expresion . AND expresion
+    (41) expresion -> expresion . OR expresion
+
+    )               reduce using rule 36 (expresion -> expresion < expresion .)
+    >               reduce using rule 36 (expresion -> expresion < expresion .)
+    MAYORIGUAL      reduce using rule 36 (expresion -> expresion < expresion .)
+    <               reduce using rule 36 (expresion -> expresion < expresion .)
+    MENORIGUAL      reduce using rule 36 (expresion -> expresion < expresion .)
+    IGUALREL        reduce using rule 36 (expresion -> expresion < expresion .)
+    DIFERENTE       reduce using rule 36 (expresion -> expresion < expresion .)
+    AND             reduce using rule 36 (expresion -> expresion < expresion .)
+    OR              reduce using rule 36 (expresion -> expresion < expresion .)
+    ;               reduce using rule 36 (expresion -> expresion < expresion .)
+    (               reduce using rule 36 (expresion -> expresion < expresion .)
+    +               shift and go to state 43
+    -               shift and go to state 44
+    *               shift and go to state 45
+    /               shift and go to state 46
+    %               shift and go to state 47
+    ^               shift and go to state 48
+
+  ! +               [ reduce using rule 36 (expresion -> expresion < expresion .) ]
+  ! -               [ reduce using rule 36 (expresion -> expresion < expresion .) ]
+  ! *               [ reduce using rule 36 (expresion -> expresion < expresion .) ]
+  ! /               [ reduce using rule 36 (expresion -> expresion < expresion .) ]
+  ! %               [ reduce using rule 36 (expresion -> expresion < expresion .) ]
+  ! ^               [ reduce using rule 36 (expresion -> expresion < expresion .) ]
+  ! >               [ shift and go to state 49 ]
+  ! MAYORIGUAL      [ shift and go to state 50 ]
+  ! <               [ shift and go to state 51 ]
+  ! MENORIGUAL      [ shift and go to state 52 ]
+  ! IGUALREL        [ shift and go to state 53 ]
+  ! DIFERENTE       [ shift and go to state 54 ]
+  ! AND             [ shift and go to state 55 ]
+  ! OR              [ shift and go to state 56 ]
+
+
+state 74
+
+    (37) expresion -> expresion MENORIGUAL expresion .
+    (28) expresion -> expresion . + expresion
+    (29) expresion -> expresion . - expresion
+    (30) expresion -> expresion . * expresion
+    (31) expresion -> expresion . / expresion
+    (32) expresion -> expresion . % expresion
+    (33) expresion -> expresion . ^ expresion
+    (34) expresion -> expresion . > expresion
+    (35) expresion -> expresion . MAYORIGUAL expresion
+    (36) expresion -> expresion . < expresion
+    (37) expresion -> expresion . MENORIGUAL expresion
+    (38) expresion -> expresion . IGUALREL expresion
+    (39) expresion -> expresion . DIFERENTE expresion
+    (40) expresion -> expresion . AND expresion
+    (41) expresion -> expresion . OR expresion
+
+    )               reduce using rule 37 (expresion -> expresion MENORIGUAL expresion .)
+    >               reduce using rule 37 (expresion -> expresion MENORIGUAL expresion .)
+    MAYORIGUAL      reduce using rule 37 (expresion -> expresion MENORIGUAL expresion .)
+    <               reduce using rule 37 (expresion -> expresion MENORIGUAL expresion .)
+    MENORIGUAL      reduce using rule 37 (expresion -> expresion MENORIGUAL expresion .)
+    IGUALREL        reduce using rule 37 (expresion -> expresion MENORIGUAL expresion .)
+    DIFERENTE       reduce using rule 37 (expresion -> expresion MENORIGUAL expresion .)
+    AND             reduce using rule 37 (expresion -> expresion MENORIGUAL expresion .)
+    OR              reduce using rule 37 (expresion -> expresion MENORIGUAL expresion .)
+    ;               reduce using rule 37 (expresion -> expresion MENORIGUAL expresion .)
+    (               reduce using rule 37 (expresion -> expresion MENORIGUAL expresion .)
+    +               shift and go to state 43
+    -               shift and go to state 44
+    *               shift and go to state 45
+    /               shift and go to state 46
+    %               shift and go to state 47
+    ^               shift and go to state 48
+
+  ! +               [ reduce using rule 37 (expresion -> expresion MENORIGUAL expresion .) ]
+  ! -               [ reduce using rule 37 (expresion -> expresion MENORIGUAL expresion .) ]
+  ! *               [ reduce using rule 37 (expresion -> expresion MENORIGUAL expresion .) ]
+  ! /               [ reduce using rule 37 (expresion -> expresion MENORIGUAL expresion .) ]
+  ! %               [ reduce using rule 37 (expresion -> expresion MENORIGUAL expresion .) ]
+  ! ^               [ reduce using rule 37 (expresion -> expresion MENORIGUAL expresion .) ]
+  ! >               [ shift and go to state 49 ]
+  ! MAYORIGUAL      [ shift and go to state 50 ]
+  ! <               [ shift and go to state 51 ]
+  ! MENORIGUAL      [ shift and go to state 52 ]
+  ! IGUALREL        [ shift and go to state 53 ]
+  ! DIFERENTE       [ shift and go to state 54 ]
+  ! AND             [ shift and go to state 55 ]
+  ! OR              [ shift and go to state 56 ]
+
+
+state 75
+
+    (38) expresion -> expresion IGUALREL expresion .
+    (28) expresion -> expresion . + expresion
+    (29) expresion -> expresion . - expresion
+    (30) expresion -> expresion . * expresion
+    (31) expresion -> expresion . / expresion
+    (32) expresion -> expresion . % expresion
+    (33) expresion -> expresion . ^ expresion
+    (34) expresion -> expresion . > expresion
+    (35) expresion -> expresion . MAYORIGUAL expresion
+    (36) expresion -> expresion . < expresion
+    (37) expresion -> expresion . MENORIGUAL expresion
+    (38) expresion -> expresion . IGUALREL expresion
+    (39) expresion -> expresion . DIFERENTE expresion
+    (40) expresion -> expresion . AND expresion
+    (41) expresion -> expresion . OR expresion
+
+    )               reduce using rule 38 (expresion -> expresion IGUALREL expresion .)
+    >               reduce using rule 38 (expresion -> expresion IGUALREL expresion .)
+    MAYORIGUAL      reduce using rule 38 (expresion -> expresion IGUALREL expresion .)
+    <               reduce using rule 38 (expresion -> expresion IGUALREL expresion .)
+    MENORIGUAL      reduce using rule 38 (expresion -> expresion IGUALREL expresion .)
+    IGUALREL        reduce using rule 38 (expresion -> expresion IGUALREL expresion .)
+    DIFERENTE       reduce using rule 38 (expresion -> expresion IGUALREL expresion .)
+    AND             reduce using rule 38 (expresion -> expresion IGUALREL expresion .)
+    OR              reduce using rule 38 (expresion -> expresion IGUALREL expresion .)
+    ;               reduce using rule 38 (expresion -> expresion IGUALREL expresion .)
+    (               reduce using rule 38 (expresion -> expresion IGUALREL expresion .)
+    +               shift and go to state 43
+    -               shift and go to state 44
+    *               shift and go to state 45
+    /               shift and go to state 46
+    %               shift and go to state 47
+    ^               shift and go to state 48
+
+  ! +               [ reduce using rule 38 (expresion -> expresion IGUALREL expresion .) ]
+  ! -               [ reduce using rule 38 (expresion -> expresion IGUALREL expresion .) ]
+  ! *               [ reduce using rule 38 (expresion -> expresion IGUALREL expresion .) ]
+  ! /               [ reduce using rule 38 (expresion -> expresion IGUALREL expresion .) ]
+  ! %               [ reduce using rule 38 (expresion -> expresion IGUALREL expresion .) ]
+  ! ^               [ reduce using rule 38 (expresion -> expresion IGUALREL expresion .) ]
+  ! >               [ shift and go to state 49 ]
+  ! MAYORIGUAL      [ shift and go to state 50 ]
+  ! <               [ shift and go to state 51 ]
+  ! MENORIGUAL      [ shift and go to state 52 ]
+  ! IGUALREL        [ shift and go to state 53 ]
+  ! DIFERENTE       [ shift and go to state 54 ]
+  ! AND             [ shift and go to state 55 ]
+  ! OR              [ shift and go to state 56 ]
+
+
+state 76
+
+    (39) expresion -> expresion DIFERENTE expresion .
+    (28) expresion -> expresion . + expresion
+    (29) expresion -> expresion . - expresion
+    (30) expresion -> expresion . * expresion
+    (31) expresion -> expresion . / expresion
+    (32) expresion -> expresion . % expresion
+    (33) expresion -> expresion . ^ expresion
+    (34) expresion -> expresion . > expresion
+    (35) expresion -> expresion . MAYORIGUAL expresion
+    (36) expresion -> expresion . < expresion
+    (37) expresion -> expresion . MENORIGUAL expresion
+    (38) expresion -> expresion . IGUALREL expresion
+    (39) expresion -> expresion . DIFERENTE expresion
+    (40) expresion -> expresion . AND expresion
+    (41) expresion -> expresion . OR expresion
+
+    )               reduce using rule 39 (expresion -> expresion DIFERENTE expresion .)
+    >               reduce using rule 39 (expresion -> expresion DIFERENTE expresion .)
+    MAYORIGUAL      reduce using rule 39 (expresion -> expresion DIFERENTE expresion .)
+    <               reduce using rule 39 (expresion -> expresion DIFERENTE expresion .)
+    MENORIGUAL      reduce using rule 39 (expresion -> expresion DIFERENTE expresion .)
+    IGUALREL        reduce using rule 39 (expresion -> expresion DIFERENTE expresion .)
+    DIFERENTE       reduce using rule 39 (expresion -> expresion DIFERENTE expresion .)
+    AND             reduce using rule 39 (expresion -> expresion DIFERENTE expresion .)
+    OR              reduce using rule 39 (expresion -> expresion DIFERENTE expresion .)
+    ;               reduce using rule 39 (expresion -> expresion DIFERENTE expresion .)
+    (               reduce using rule 39 (expresion -> expresion DIFERENTE expresion .)
+    +               shift and go to state 43
+    -               shift and go to state 44
+    *               shift and go to state 45
+    /               shift and go to state 46
+    %               shift and go to state 47
+    ^               shift and go to state 48
+
+  ! +               [ reduce using rule 39 (expresion -> expresion DIFERENTE expresion .) ]
+  ! -               [ reduce using rule 39 (expresion -> expresion DIFERENTE expresion .) ]
+  ! *               [ reduce using rule 39 (expresion -> expresion DIFERENTE expresion .) ]
+  ! /               [ reduce using rule 39 (expresion -> expresion DIFERENTE expresion .) ]
+  ! %               [ reduce using rule 39 (expresion -> expresion DIFERENTE expresion .) ]
+  ! ^               [ reduce using rule 39 (expresion -> expresion DIFERENTE expresion .) ]
+  ! >               [ shift and go to state 49 ]
+  ! MAYORIGUAL      [ shift and go to state 50 ]
+  ! <               [ shift and go to state 51 ]
+  ! MENORIGUAL      [ shift and go to state 52 ]
+  ! IGUALREL        [ shift and go to state 53 ]
+  ! DIFERENTE       [ shift and go to state 54 ]
+  ! AND             [ shift and go to state 55 ]
+  ! OR              [ shift and go to state 56 ]
+
+
+state 77
+
+    (40) expresion -> expresion AND expresion .
+    (28) expresion -> expresion . + expresion
+    (29) expresion -> expresion . - expresion
+    (30) expresion -> expresion . * expresion
+    (31) expresion -> expresion . / expresion
+    (32) expresion -> expresion . % expresion
+    (33) expresion -> expresion . ^ expresion
+    (34) expresion -> expresion . > expresion
+    (35) expresion -> expresion . MAYORIGUAL expresion
+    (36) expresion -> expresion . < expresion
+    (37) expresion -> expresion . MENORIGUAL expresion
+    (38) expresion -> expresion . IGUALREL expresion
+    (39) expresion -> expresion . DIFERENTE expresion
+    (40) expresion -> expresion . AND expresion
+    (41) expresion -> expresion . OR expresion
+
+    )               reduce using rule 40 (expresion -> expresion AND expresion .)
+    AND             reduce using rule 40 (expresion -> expresion AND expresion .)
+    OR              reduce using rule 40 (expresion -> expresion AND expresion .)
+    ;               reduce using rule 40 (expresion -> expresion AND expresion .)
+    (               reduce using rule 40 (expresion -> expresion AND expresion .)
+    +               shift and go to state 43
+    -               shift and go to state 44
+    *               shift and go to state 45
+    /               shift and go to state 46
+    %               shift and go to state 47
+    ^               shift and go to state 48
+    >               shift and go to state 49
+    MAYORIGUAL      shift and go to state 50
+    <               shift and go to state 51
+    MENORIGUAL      shift and go to state 52
+    IGUALREL        shift and go to state 53
+    DIFERENTE       shift and go to state 54
+
+  ! +               [ reduce using rule 40 (expresion -> expresion AND expresion .) ]
+  ! -               [ reduce using rule 40 (expresion -> expresion AND expresion .) ]
+  ! *               [ reduce using rule 40 (expresion -> expresion AND expresion .) ]
+  ! /               [ reduce using rule 40 (expresion -> expresion AND expresion .) ]
+  ! %               [ reduce using rule 40 (expresion -> expresion AND expresion .) ]
+  ! ^               [ reduce using rule 40 (expresion -> expresion AND expresion .) ]
+  ! >               [ reduce using rule 40 (expresion -> expresion AND expresion .) ]
+  ! MAYORIGUAL      [ reduce using rule 40 (expresion -> expresion AND expresion .) ]
+  ! <               [ reduce using rule 40 (expresion -> expresion AND expresion .) ]
+  ! MENORIGUAL      [ reduce using rule 40 (expresion -> expresion AND expresion .) ]
+  ! IGUALREL        [ reduce using rule 40 (expresion -> expresion AND expresion .) ]
+  ! DIFERENTE       [ reduce using rule 40 (expresion -> expresion AND expresion .) ]
+  ! AND             [ shift and go to state 55 ]
+  ! OR              [ shift and go to state 56 ]
+
+
+state 78
+
+    (41) expresion -> expresion OR expresion .
+    (28) expresion -> expresion . + expresion
+    (29) expresion -> expresion . - expresion
+    (30) expresion -> expresion . * expresion
+    (31) expresion -> expresion . / expresion
+    (32) expresion -> expresion . % expresion
+    (33) expresion -> expresion . ^ expresion
+    (34) expresion -> expresion . > expresion
+    (35) expresion -> expresion . MAYORIGUAL expresion
+    (36) expresion -> expresion . < expresion
+    (37) expresion -> expresion . MENORIGUAL expresion
+    (38) expresion -> expresion . IGUALREL expresion
+    (39) expresion -> expresion . DIFERENTE expresion
+    (40) expresion -> expresion . AND expresion
+    (41) expresion -> expresion . OR expresion
+
+    )               reduce using rule 41 (expresion -> expresion OR expresion .)
+    OR              reduce using rule 41 (expresion -> expresion OR expresion .)
+    ;               reduce using rule 41 (expresion -> expresion OR expresion .)
+    (               reduce using rule 41 (expresion -> expresion OR expresion .)
+    +               shift and go to state 43
+    -               shift and go to state 44
+    *               shift and go to state 45
+    /               shift and go to state 46
+    %               shift and go to state 47
+    ^               shift and go to state 48
+    >               shift and go to state 49
+    MAYORIGUAL      shift and go to state 50
+    <               shift and go to state 51
+    MENORIGUAL      shift and go to state 52
+    IGUALREL        shift and go to state 53
+    DIFERENTE       shift and go to state 54
+    AND             shift and go to state 55
+
+  ! +               [ reduce using rule 41 (expresion -> expresion OR expresion .) ]
+  ! -               [ reduce using rule 41 (expresion -> expresion OR expresion .) ]
+  ! *               [ reduce using rule 41 (expresion -> expresion OR expresion .) ]
+  ! /               [ reduce using rule 41 (expresion -> expresion OR expresion .) ]
+  ! %               [ reduce using rule 41 (expresion -> expresion OR expresion .) ]
+  ! ^               [ reduce using rule 41 (expresion -> expresion OR expresion .) ]
+  ! >               [ reduce using rule 41 (expresion -> expresion OR expresion .) ]
+  ! MAYORIGUAL      [ reduce using rule 41 (expresion -> expresion OR expresion .) ]
+  ! <               [ reduce using rule 41 (expresion -> expresion OR expresion .) ]
+  ! MENORIGUAL      [ reduce using rule 41 (expresion -> expresion OR expresion .) ]
+  ! IGUALREL        [ reduce using rule 41 (expresion -> expresion OR expresion .) ]
+  ! DIFERENTE       [ reduce using rule 41 (expresion -> expresion OR expresion .) ]
+  ! AND             [ reduce using rule 41 (expresion -> expresion OR expresion .) ]
+  ! OR              [ shift and go to state 56 ]
+
+
+state 79
+
+    (27) expresion -> FUNCION ( expresion . )
+    (28) expresion -> expresion . + expresion
+    (29) expresion -> expresion . - expresion
+    (30) expresion -> expresion . * expresion
+    (31) expresion -> expresion . / expresion
+    (32) expresion -> expresion . % expresion
+    (33) expresion -> expresion . ^ expresion
+    (34) expresion -> expresion . > expresion
+    (35) expresion -> expresion . MAYORIGUAL expresion
+    (36) expresion -> expresion . < expresion
+    (37) expresion -> expresion . MENORIGUAL expresion
+    (38) expresion -> expresion . IGUALREL expresion
+    (39) expresion -> expresion . DIFERENTE expresion
+    (40) expresion -> expresion . AND expresion
+    (41) expresion -> expresion . OR expresion
+
+    )               shift and go to state 82
+    +               shift and go to state 43
+    -               shift and go to state 44
+    *               shift and go to state 45
+    /               shift and go to state 46
+    %               shift and go to state 47
+    ^               shift and go to state 48
+    >               shift and go to state 49
+    MAYORIGUAL      shift and go to state 50
+    <               shift and go to state 51
+    MENORIGUAL      shift and go to state 52
+    IGUALREL        shift and go to state 53
+    DIFERENTE       shift and go to state 54
+    AND             shift and go to state 55
+    OR              shift and go to state 56
+
+
+state 80
+
+    (12) sentencia -> if condicion sentencia termino ELSE . sentencia termino
+    (7) sentencia -> . asignacion ;
+    (8) sentencia -> . { listasentencias }
+    (9) sentencia -> . PRINT ( expresion ) ;
+    (10) sentencia -> . while condicion sentencia termino
+    (11) sentencia -> . if condicion sentencia termino
+    (12) sentencia -> . if condicion sentencia termino ELSE sentencia termino
+    (13) sentencia -> . for asignacion condicion sentencia termino
+    (5) asignacion -> . VARIABLE = expresion
+    (6) asignacion -> . INDEFINIDA = expresion
+    (15) while -> . WHILE
+    (16) if -> . IF
+    (17) for -> . FOR
+
+    {               shift and go to state 6
+    PRINT           shift and go to state 7
+    VARIABLE        shift and go to state 11
+    INDEFINIDA      shift and go to state 12
+    WHILE           shift and go to state 13
+    IF              shift and go to state 14
+    FOR             shift and go to state 15
+
+    if                             shift and go to state 9
+    sentencia                      shift and go to state 83
+    asignacion                     shift and go to state 5
+    while                          shift and go to state 8
+    for                            shift and go to state 10
+
+state 81
+
+    (13) sentencia -> for asignacion condicion sentencia termino .
+
+    ;               reduce using rule 13 (sentencia -> for asignacion condicion sentencia termino .)
+    error           reduce using rule 13 (sentencia -> for asignacion condicion sentencia termino .)
+    {               reduce using rule 13 (sentencia -> for asignacion condicion sentencia termino .)
+    PRINT           reduce using rule 13 (sentencia -> for asignacion condicion sentencia termino .)
+    VARIABLE        reduce using rule 13 (sentencia -> for asignacion condicion sentencia termino .)
+    INDEFINIDA      reduce using rule 13 (sentencia -> for asignacion condicion sentencia termino .)
+    WHILE           reduce using rule 13 (sentencia -> for asignacion condicion sentencia termino .)
+    IF              reduce using rule 13 (sentencia -> for asignacion condicion sentencia termino .)
+    FOR             reduce using rule 13 (sentencia -> for asignacion condicion sentencia termino .)
+    $end            reduce using rule 13 (sentencia -> for asignacion condicion sentencia termino .)
+    }               reduce using rule 13 (sentencia -> for asignacion condicion sentencia termino .)
+    ELSE            reduce using rule 13 (sentencia -> for asignacion condicion sentencia termino .)
+
+
+state 82
+
+    (27) expresion -> FUNCION ( expresion ) .
+
+    )               reduce using rule 27 (expresion -> FUNCION ( expresion ) .)
+    +               reduce using rule 27 (expresion -> FUNCION ( expresion ) .)
+    -               reduce using rule 27 (expresion -> FUNCION ( expresion ) .)
+    *               reduce using rule 27 (expresion -> FUNCION ( expresion ) .)
+    /               reduce using rule 27 (expresion -> FUNCION ( expresion ) .)
+    %               reduce using rule 27 (expresion -> FUNCION ( expresion ) .)
+    ^               reduce using rule 27 (expresion -> FUNCION ( expresion ) .)
+    >               reduce using rule 27 (expresion -> FUNCION ( expresion ) .)
+    MAYORIGUAL      reduce using rule 27 (expresion -> FUNCION ( expresion ) .)
+    <               reduce using rule 27 (expresion -> FUNCION ( expresion ) .)
+    MENORIGUAL      reduce using rule 27 (expresion -> FUNCION ( expresion ) .)
+    IGUALREL        reduce using rule 27 (expresion -> FUNCION ( expresion ) .)
+    DIFERENTE       reduce using rule 27 (expresion -> FUNCION ( expresion ) .)
+    AND             reduce using rule 27 (expresion -> FUNCION ( expresion ) .)
+    OR              reduce using rule 27 (expresion -> FUNCION ( expresion ) .)
+    ;               reduce using rule 27 (expresion -> FUNCION ( expresion ) .)
+    (               reduce using rule 27 (expresion -> FUNCION ( expresion ) .)
+
+
+state 83
+
+    (12) sentencia -> if condicion sentencia termino ELSE sentencia . termino
+    (42) termino -> .
+
+    ;               reduce using rule 42 (termino -> .)
+    error           reduce using rule 42 (termino -> .)
+    {               reduce using rule 42 (termino -> .)
+    PRINT           reduce using rule 42 (termino -> .)
+    VARIABLE        reduce using rule 42 (termino -> .)
+    INDEFINIDA      reduce using rule 42 (termino -> .)
+    WHILE           reduce using rule 42 (termino -> .)
+    IF              reduce using rule 42 (termino -> .)
+    FOR             reduce using rule 42 (termino -> .)
+    $end            reduce using rule 42 (termino -> .)
+    }               reduce using rule 42 (termino -> .)
+    ELSE            reduce using rule 42 (termino -> .)
+
+    termino                        shift and go to state 84
+
+state 84
+
+    (12) sentencia -> if condicion sentencia termino ELSE sentencia termino .
+
+    ;               reduce using rule 12 (sentencia -> if condicion sentencia termino ELSE sentencia termino .)
+    error           reduce using rule 12 (sentencia -> if condicion sentencia termino ELSE sentencia termino .)
+    {               reduce using rule 12 (sentencia -> if condicion sentencia termino ELSE sentencia termino .)
+    PRINT           reduce using rule 12 (sentencia -> if condicion sentencia termino ELSE sentencia termino .)
+    VARIABLE        reduce using rule 12 (sentencia -> if condicion sentencia termino ELSE sentencia termino .)
+    INDEFINIDA      reduce using rule 12 (sentencia -> if condicion sentencia termino ELSE sentencia termino .)
+    WHILE           reduce using rule 12 (sentencia -> if condicion sentencia termino ELSE sentencia termino .)
+    IF              reduce using rule 12 (sentencia -> if condicion sentencia termino ELSE sentencia termino .)
+    FOR             reduce using rule 12 (sentencia -> if condicion sentencia termino ELSE sentencia termino .)
+    $end            reduce using rule 12 (sentencia -> if condicion sentencia termino ELSE sentencia termino .)
+    }               reduce using rule 12 (sentencia -> if condicion sentencia termino ELSE sentencia termino .)
+    ELSE            reduce using rule 12 (sentencia -> if condicion sentencia termino ELSE sentencia termino .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for } in state 18 resolved as shift
+WARNING: shift/reduce conflict for { in state 18 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 18 resolved as shift
+WARNING: shift/reduce conflict for VARIABLE in state 18 resolved as shift
+WARNING: shift/reduce conflict for INDEFINIDA in state 18 resolved as shift
+WARNING: shift/reduce conflict for WHILE in state 18 resolved as shift
+WARNING: shift/reduce conflict for IF in state 18 resolved as shift
+WARNING: shift/reduce conflict for FOR in state 18 resolved as shift
+WARNING: shift/reduce conflict for + in state 40 resolved as shift
+WARNING: shift/reduce conflict for - in state 40 resolved as shift
+WARNING: shift/reduce conflict for * in state 40 resolved as shift
+WARNING: shift/reduce conflict for / in state 40 resolved as shift
+WARNING: shift/reduce conflict for % in state 40 resolved as shift
+WARNING: shift/reduce conflict for ^ in state 40 resolved as shift
+WARNING: shift/reduce conflict for > in state 40 resolved as shift
+WARNING: shift/reduce conflict for MAYORIGUAL in state 40 resolved as shift
+WARNING: shift/reduce conflict for < in state 40 resolved as shift
+WARNING: shift/reduce conflict for MENORIGUAL in state 40 resolved as shift
+WARNING: shift/reduce conflict for IGUALREL in state 40 resolved as shift
+WARNING: shift/reduce conflict for DIFERENTE in state 40 resolved as shift
+WARNING: shift/reduce conflict for AND in state 40 resolved as shift
+WARNING: shift/reduce conflict for OR in state 40 resolved as shift
+WARNING: shift/reduce conflict for + in state 41 resolved as shift
+WARNING: shift/reduce conflict for - in state 41 resolved as shift
+WARNING: shift/reduce conflict for * in state 41 resolved as shift
+WARNING: shift/reduce conflict for / in state 41 resolved as shift
+WARNING: shift/reduce conflict for % in state 41 resolved as shift
+WARNING: shift/reduce conflict for ^ in state 41 resolved as shift
+WARNING: shift/reduce conflict for > in state 41 resolved as shift
+WARNING: shift/reduce conflict for MAYORIGUAL in state 41 resolved as shift
+WARNING: shift/reduce conflict for < in state 41 resolved as shift
+WARNING: shift/reduce conflict for MENORIGUAL in state 41 resolved as shift
+WARNING: shift/reduce conflict for IGUALREL in state 41 resolved as shift
+WARNING: shift/reduce conflict for DIFERENTE in state 41 resolved as shift
+WARNING: shift/reduce conflict for AND in state 41 resolved as shift
+WARNING: shift/reduce conflict for OR in state 41 resolved as shift
+WARNING: shift/reduce conflict for ELSE in state 62 resolved as shift
