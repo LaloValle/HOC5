@@ -251,4 +251,20 @@ class Programa():
 		self._contadorPrograma = self._programa[indiceInicioWhile + 1]
 
 	def forcode(self):
-		pass
+		indiceInicioFor = self._contadorPrograma
+
+		self.ejecutar(indiceInicioFor + 4)  # Ejecución de los valores de entrada
+		asignacion = self._interprete.pop()
+
+		self.ejecutar(self._programa[indiceInicioFor])  # Ejecución de la condición del while
+		condicion = self._interprete.pop()
+
+		while condicion.valor:
+			self.ejecutar(self._programa[indiceInicioFor + 2])  # Ejecución de la sentencia del for
+
+			self.ejecutar(self._programa[indiceInicioFor + 1])  # Ejecución de la iteración por ciclo del for
+
+			self.ejecutar(self._programa[indiceInicioFor])  # Ejecución de la condición del for
+			condicion = self._interprete.pop()
+
+		self._contadorPrograma = self._programa[indiceInicioFor + 3]

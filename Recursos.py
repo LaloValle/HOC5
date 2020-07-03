@@ -16,6 +16,8 @@ tokens = [
 	'CONSTANTE',
 	'CADENA',
 	'PRINT',
+	'INCREMENTO',
+	'DECREMENTO',
 	'OR',  # Operadores lógicos
 	'AND',
 	'MAYORIGUAL',
@@ -25,7 +27,9 @@ tokens = [
 	'WHILE',
 	'IF',
 	'ELSE',
-	'FOR'
+	'FOR',
+	'TRUE',
+	'FALSE'
 ]
 	
 """ Tokens compuestos por unicamente un símbolo """
@@ -38,7 +42,8 @@ literals = [
 	'(','{',
 	')','}',
 	'>','<',
-	'!'
+	'!',
+	','
 ]
 
 
@@ -84,7 +89,6 @@ constantes = {
 	'Γ':0.57721566490153286060 , 'GAMMA':0.57721566490153286060,
 	'DEG':57.29577951308232087680,
 	'φ':1.6180339887498948482, 'PHI':1.6180339887498948482,
-	'True':True , 'False':False  # Valores lógicos
 }
 
 """ Diccionario de funciones matemáticas y la referencia a la función """
@@ -143,4 +147,4 @@ def imprimirNotificacion(mensaje):
 	print('\x1b[1;33m'+'\n--- %s ---\n',mensaje)
 
 def imprimirResultado(resultado):
-	print('HOC4 >> ',resultado)
+	print('HOC5 >> ',resultado)

@@ -15,7 +15,10 @@ class AnalizadorLexico(object):
 		>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 	"""
 
-	t_ignore = ' \t\n' # Ignora espacios y tabuladores
+	t_ignore = ' \t\n' # Ignora espacios, tabuladores y saltos de línea
+
+	t_INCREMENTO = r'\+\+'
+	t_DECREMENTO = r'--'
 
 	""" Operadores lógicos """
 	t_OR = r'\|\|'
@@ -25,7 +28,7 @@ class AnalizadorLexico(object):
 	t_IGUALREL = r'=='
 	t_DIFERENTE = r'!='
 
-	t_CADENA = r'\'[\w]*\''
+	t_CADENA = r'\'[\w ]*\''
 
 	def t_NUMERO(self,t):
 		r'\d+(\.\d+)?'
@@ -64,9 +67,8 @@ class AnalizadorLexico(object):
 		return t
 
 	def t_error(self,t):
-		recursos.mostrarError('ErrorLexico','No se ha reconocido el caracter {} en la línea {}, posición {}'.format(t.value[0],t.lineno,t.lexpos))
+		recursos.imprimirError('ErrorLexico','No se ha reconocido el caracter {} en la línea {}, posición {}'.format(t.value[0],t.lineno,t.lexpos))
 		t.lexer.skip(1) 	# Salta la ejecución al lexema siguiente
-
 
 
 	"""	

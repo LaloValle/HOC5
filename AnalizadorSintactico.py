@@ -22,7 +22,8 @@ precedence = (
 	('left', '+', '-'),
 	('left', '*', '/','%'),
 	('left', 'MENOSUNARIO','!'),
-	('right', '^')
+	('right', '^'),
+	('left', 'INCREMENTO','DECREMENTO')
 )
 
 def p_lista(p):
@@ -50,6 +51,17 @@ def p_asignacion(p):
 	'''
 	p[0] = p[3]
 	if p[1] not in recursos.variables: recursos.variables[p[1]] = None
+	programa.agregarInstrucciones('varpush',p[1],'asignacion')
+
+def p_asignacion_unidad(p):
+	'''
+	asignacion 	: VARIABLE INCREMENTO
+				| VARIABLE DECREMENTO
+	'''
+	operador = p[2]
+	p[0] = programa.agregarInstrucciones('varpush',p[1],'constpush',1)
+	if operador == '++': programa.agregarInstrucciones('suma')
+	else: programa.agregarInstrucciones('resta')
 	programa.agregarInstrucciones('varpush',p[1],'asignacion')
 
 def p_sentencia(p):
@@ -85,17 +97,92 @@ def p_sentencia_if(p):
 		programa._programa[indiceInicioIf + 3] = p[7]
 	else: programa._programa[indiceInicioIf + 3] = p[4]
 
+
+
+
+
 def p_sentencia_for(p):
-	''' sentencia : for asignacion condicion sentencia termino '''
+	''' sentencia : for '(' listaasignaciones condicion listaexpresiones ')' sentencia termino '''
+	#programa.agregarInstrucciones('STOP')   Se coloca el stop de la listaexpresiones
 	p[0] = p[1]
 	indiceInicioFor = p[1]
-	programa._programa[indiceInicioFor + 1] = p[3]
-	programa._programa[indiceInicioFor + 2] = p[4]
-	programa._programa[indiceInicioFor + 3] = p[5]
+	programa._programa[indiceInicioFor + 1] = p[4]
+	programa._programa[indiceInicioFor + 2] = p[5]
+	programa._programa[indiceInicioFor + 3] = p[7]
+	programa._programa[indiceInicioFor + 4] = p[8]
+
+def p_listaasignaciones(p):
+	'''
+	listaasignaciones 	: 
+						| siguiente
+						| listaasignaciones
+						| listaasignaciones asignacion coma siguiente
+	'''
+	if len(p) > 1:
+		if len(p) == 2: p[0] = p[1]
+		else: p[0] = p[2] if p[1] == None else p[1]
+
+def p_listaexpresiones(p):
+	'''
+	listaexpresiones 	: 
+						| siguiente
+						| listaexpresiones
+						| listaexpresiones expresion coma termino
+	'''
+	if len(p) > 1:
+		if len(p) == 2: p[0] = p[1]
+		else: p[0] = p[2] if p[1] == None else p[1]
+
+def p_expresionlogica_constantes(p):
+	'''
+	expresionlogica : TRUE
+					| FALSE
+	'''
+	p[0] = programa.agregarInstrucciones('constpush',p[1])
+
+def p_expresionlogica_operaciones(p):
+	'''
+	expresionlogica : expresion '>' expresion
+					| expresion MAYORIGUAL expresion
+					| expresion '<' expresion
+					| expresion MENORIGUAL expresion
+					| expresion IGUALREL expresion
+					| expresion DIFERENTE expresion
+					| expresion AND expresion
+					| expresion OR expresion
+	'''
+	p[0] = p[1]
+	operador = p[2]
+	if operador == '>': programa.agregarInstrucciones('mayorque')
+	elif operador == '>=': programa.agregarInstrucciones('mayorigual')
+	elif operador == '<': programa.agregarInstrucciones('menorque')
+	elif operador == '<=': programa.agregarInstrucciones('menorigual')
+	elif operador == '==': programa.agregarInstrucciones('igual')
+	elif operador == '!=': programa.agregarInstrucciones('diferente')
+	elif operador == '&&': programa.agregarInstrucciones('and')
+	elif operador == '||': programa.agregarInstrucciones('or')
+
+def p_siguiente(p):
+	''' siguiente : ';' '''
+	programa.agregarInstrucciones('STOP')
+	p[0] = programa.getIndicePrograma()
+
+def p_coma(p):
+	'''
+	coma 	:
+			| ','
+	'''
+	p[0] = programa.getIndicePrograma()
+
+
+
+
 
 def p_condicion(p):
-	''' condicion : '(' expresion ')' '''
-	p[0] = p[2]
+	''' condicion 	: '(' expresionlogica ')' 
+					|	expresionlogica ';'
+	'''
+	p[0] = p[2] if len(p) == 4 else p[1]
 	programa.agregarInstrucciones('STOP')
 
 def p_while(p):
@@ -111,7 +198,7 @@ def p_if(p):
 def p_for(p):
 	''' for : FOR '''
 	p[0] = programa.agregarInstrucciones('for')
-	programa.agregarInstrucciones('STOP','STOP','STOP')
+	programa.agregarInstrucciones('STOP','STOP','STOP','STOP')
 
 def p_listasentencias(p):
 	''' listasentencias :
@@ -137,10 +224,11 @@ def p_expresion_variable(p):
 	p[0] = programa.agregarInstrucciones('varpush',p[1])
 
 def p_expresion_asignacion(p):
-	''' expresion : asignacion 
-				  | '(' expresion ')'
+	''' expresion 	: asignacion 
+					| expresionlogica
+				  	| '(' expresion ')'
 	'''
-	p[0] = p[1]
+	p[0] = p[1] if len(p) == 2 else p[2]
 
 def p_expresion_negaciones(p):
 	''' expresion 	: '!' expresion
@@ -158,14 +246,6 @@ def p_expresion_operaciones(p):
 					| expresion '/' expresion
 					| expresion '%' expresion
 					| expresion '^' expresion
-					| expresion '>' expresion
-					| expresion MAYORIGUAL expresion
-					| expresion '<' expresion
-					| expresion MENORIGUAL expresion
-					| expresion IGUALREL expresion
-					| expresion DIFERENTE expresion
-					| expresion AND expresion
-					| expresion OR expresion
 	'''
 	if len(p) == 4: # Operaciones binarias
 		p[0] = p[1]
@@ -176,14 +256,6 @@ def p_expresion_operaciones(p):
 		elif operador == '/': programa.agregarInstrucciones('division')
 		elif operador == '%': programa.agregarInstrucciones('modulo')
 		elif operador == '^': programa.agregarInstrucciones('potencia')
-		elif operador == '>': programa.agregarInstrucciones('mayorque')
-		elif operador == '>=': programa.agregarInstrucciones('mayorigual')
-		elif operador == '<': programa.agregarInstrucciones('menorque')
-		elif operador == '<=': programa.agregarInstrucciones('menorigual')
-		elif operador == '==': programa.agregarInstrucciones('igual')
-		elif operador == '!=': programa.agregarInstrucciones('diferente')
-		elif operador == '&&': programa.agregarInstrucciones('and')
-		elif operador == '||': programa.agregarInstrucciones('or')
 	else:  # Funciones
 		p[0] = p[3]
 		programa.agregarInstrucciones('funcion',p[1])
