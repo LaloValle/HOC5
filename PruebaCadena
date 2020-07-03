@@ -1,12 +1,10 @@
-i = 0; while(i < 10){ if(i % 2 == 0) var = 1; else var = 3;  i = i+1;}
-
-i = 0; 
-while(i < 10){
+i = 0;
+j = 0;
+while(i < 2){
+	while(j < 4){
+		if(i*j% 5 == 0) print(i*j)
+	}
 	i = i+1;
-	if(i % 2 == 0)
-		print(True);
-	else
-		print(False);
 }
 
-2+4;
+i = 0;j = 0;while(i < 2){ while(j < 2){	if((i*j) % 2 == 0) print(i*j); j = j+1;	} i = i+1;}

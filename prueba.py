@@ -15,9 +15,9 @@ while True:
 	print(lexico.analizarCadena(cadena))
 	print('\n>>>>>>>>>>>>>>>>>>>>\n')
 	sintactico.analizarCadena(cadena)
-	for i in range(len(programa._programa)):
-		print('{} >> {}'.format(i,programa._programa[i]))
-	print('Inicia la interpretacion:\n')
+	#for i in range(len(programa._programa)):
+		#print('{} >> {}'.format(i,programa._programa[i]))
+	#print('Inicia la interpretacion:\n')
 
 	programa.ejecutar()
 	programa.reiniciarPrograma()

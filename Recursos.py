@@ -14,6 +14,7 @@ tokens = [
 	'VARIABLE',
 	'FUNCION',
 	'CONSTANTE',
+	'CADENA',
 	'PRINT',
 	'OR',  # Operadores lógicos
 	'AND',

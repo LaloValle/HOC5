@@ -31,7 +31,6 @@ def p_lista(p):
 			| lista ';'
 			| lista sentencia
 	'''
-	print('Lista')
 	try:
 		if len(p) == 2: p[0] = p[1]
 		else: p[0] = p[2]
@@ -49,7 +48,6 @@ def p_asignacion(p):
 	asignacion  : VARIABLE '=' expresion
 				| INDEFINIDA '=' expresion
 	'''
-	print('asignacion')
 	p[0] = p[3]
 	if p[1] not in recursos.variables: recursos.variables[p[1]] = None
 	programa.agregarInstrucciones('varpush',p[1],'asignacion')
@@ -58,7 +56,6 @@ def p_sentencia(p):
 	''' sentencia 	: asignacion ';'
 					| '{' listasentencias '}'
 	'''
-	print('una sentencia')
 	if len(p) == 3: p[0] = p[1]
 	else:
 		programa.agregarInstrucciones('STOP') 
@@ -66,13 +63,12 @@ def p_sentencia(p):
 
 def p_sentencia_print(p):
 	''' sentencia : PRINT '(' expresion ')' ';' '''
-	print('print')
 	programa.agregarInstrucciones('print')
 	p[0] = p[3]
 
 def p_sentencia_while(p):
 	'''	sentencia : while condicion sentencia termino'''
-	print('sentencia while')
+	p[0] = p[1]
 	indiceInicioWhile = p[1]
 	programa._programa[indiceInicioWhile + 1] = p[3]
 	programa._programa[indiceInicioWhile + 2] = p[4]
@@ -81,6 +77,7 @@ def p_sentencia_if(p):
 	''' sentencia 	: if condicion sentencia termino
 					| if condicion sentencia termino ELSE sentencia termino
 	'''
+	p[0] = p[1]
 	indiceInicioIf = p[1]
 	programa._programa[indiceInicioIf + 1] = p[3]
 	if len(p) == 8: 
@@ -90,7 +87,7 @@ def p_sentencia_if(p):
 
 def p_sentencia_for(p):
 	''' sentencia : for asignacion condicion sentencia termino '''
-	print('sentencia for')
+	p[0] = p[1]
 	indiceInicioFor = p[1]
 	programa._programa[indiceInicioFor + 1] = p[3]
 	programa._programa[indiceInicioFor + 2] = p[4]
@@ -98,25 +95,21 @@ def p_sentencia_for(p):
 
 def p_condicion(p):
 	''' condicion : '(' expresion ')' '''
-	print('condicion')
 	p[0] = p[2]
 	programa.agregarInstrucciones('STOP')
 
 def p_while(p):
 	''' while : WHILE '''
-	print(' while')
 	p[0] = programa.agregarInstrucciones('while')
 	programa.agregarInstrucciones('STOP','STOP')
 
 def p_if(p):
 	''' if : IF '''
-	print('if')
 	p[0] = programa.agregarInstrucciones('if')
 	programa.agregarInstrucciones('STOP','STOP','STOP')
 
 def p_for(p):
 	''' for : FOR '''
-	print('for')
 	p[0] = programa.agregarInstrucciones('for')
 	programa.agregarInstrucciones('STOP','STOP','STOP')
 
@@ -125,38 +118,34 @@ def p_listasentencias(p):
 						| listasentencias
 						| listasentencias sentencia
 	'''
-	try:
-		print('lista sentencias: ',p[1])
-		print('lista sentencias: ',p[1],p[2])
-	except: pass
 	if len(p) > 1:
 		if len(p) == 2: p[0] = p[1]
 		else: p[0] = p[2] if p[1] == None else p[1]
+	else: p[0] = programa.getIndicePrograma()
 
 
 def p_expresion_constantes(p):
 	''' 
 	expresion 	: NUMERO 
-				| CONSTANTE	
+				| CONSTANTE
+				| CADENA
 	'''
-	print('constantes')
 	p[0] = programa.agregarInstrucciones('constpush',p[1])
 
 def p_expresion_variable(p):
 	''' expresion : VARIABLE '''
-	print('variables')
 	p[0] = programa.agregarInstrucciones('varpush',p[1])
 
 def p_expresion_asignacion(p):
-	''' expresion : asignacion '''
-	print('asignacion expresion')
+	''' expresion : asignacion 
+				  | '(' expresion ')'
+	'''
 	p[0] = p[1]
 
 def p_expresion_negaciones(p):
 	''' expresion 	: '!' expresion
 					| '-' expresion %prec MENOSUNARIO
 	'''
-	print('negacion')
 	p[0] == p[2]
 	if p[1] == '-': programa.agregarInstrucciones('negacion')
 	else: programa.agregarInstrucciones('not')
@@ -178,7 +167,6 @@ def p_expresion_operaciones(p):
 					| expresion AND expresion
 					| expresion OR expresion
 	'''
-	print('operaciones')
 	if len(p) == 4: # Operaciones binarias
 		p[0] = p[1]
 		operador = p[2]
@@ -202,7 +190,8 @@ def p_expresion_operaciones(p):
 
 def p_termino(p):
 	''' termino :'''
-	p[0] = programa.agregarInstrucciones('STOP')
+	programa.agregarInstrucciones('STOP')
+	p[0] = programa.getIndicePrograma()
 
 def p_error(p):
 	if p:

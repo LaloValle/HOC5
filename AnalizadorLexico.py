@@ -25,6 +25,8 @@ class AnalizadorLexico(object):
 	t_IGUALREL = r'=='
 	t_DIFERENTE = r'!='
 
+	t_CADENA = r'\'[\w]*\''
+
 	def t_NUMERO(self,t):
 		r'\d+(\.\d+)?'
 		if t.value.find('.') == -1 : t.value = int(t.value)

@@ -53,6 +53,9 @@ class Programa():
 
 		return auxIndicePrograma
 
+	def getIndicePrograma(self):
+		return int(self._indicePrograma)
+
 	def ejecutar(self,indiceInicio=None):
 		indiceOriginal = None
 
