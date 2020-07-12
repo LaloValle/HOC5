@@ -287,3 +287,4 @@ def analizarCadena(cadena):
 	global parser
 	parser.parse(cadena)
 	programa.agregarInstrucciones('STOP')
+	return programa._programa

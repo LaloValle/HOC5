@@ -17,6 +17,12 @@ class Interprete:
 	def pop(self):
 		return self._pila.pop()
 
+	def getDatosEnPila(self):
+		ar = []
+		for e in self._pila:
+			ar.append((e.nombre, e.tipo, e.valor))
+		return ar
+
 
 
 class Dato():
@@ -41,6 +47,7 @@ class Programa():
 		self.reiniciarPrograma()
 
 		self._interprete = Interprete()
+		self._output = []
 
 
 	def agregarInstrucciones(self,*instrucciones):  # Agrega un número indefinido de instrucciones al programa
@@ -76,6 +83,7 @@ class Programa():
 		self._contadorPrograma = 0  # Indice actual de las instrucciones durante la interpretación
 
 		self._programa = []  # Lista de instrucciones
+		self._output = []	 # Lista de salida del programa
 
 
 	instancia = None

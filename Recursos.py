@@ -103,8 +103,6 @@ funciones = {
 
 variables = {}  # Diccionario que almacena el nombre(key) y valor(value) de las variables
 
-
-
 tipoInstruccion = {
 		'STOP':False,
 		'constpush':programa.constpush,
@@ -134,7 +132,6 @@ tipoInstruccion = {
 		'for':programa.forcode
 	}
 
-
 """
 	MENSAJES CONSOLA
 	>>>>>>>>>>>>>>>>
@@ -147,4 +144,4 @@ def imprimirNotificacion(mensaje):
 	print('\x1b[1;33m'+'\n--- %s ---\n',mensaje)
 
 def imprimirResultado(resultado):
-	print('HOC5 >> ',resultado)
+	programa._output.append('HOC5 >> ' + str(resultado))
